@@ -2,7 +2,7 @@ Hi my name is Nabil, over the past few years,
 I have grown as a software developer and artist. 
 This website is under construction to better reflect 
 that growth. I think algorithms can be as beautiful as flowers 
-or paintings. I take a deep interest in procedural content generation
+or paintings. I take a deep interest in procedural content generation 
 and artifical intelligence. I use these techniques to make video games, 
 art installations, websites and anything I think is cool. 
 Follow my socials if you want to reach out or see what I'm up to.
