@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400&family=Raleway&family=Tenor+Sans&display=swap');
+
+.mainPanel
+{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    color:#fbf5f3;
+    background-color: #6279b857;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 25%;
+    box-shadow: 8px 5px 25px 10px rgba(0, 0, 0, 0.50);
+}
+.logoPanel
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+@media all and (max-width: 800px){
+    .mainPanel
+    {
+        max-width: 75%;
+    }
+}
+
+@media all and (max-width: 500px){
+    .mainPanel
+    {
+        max-width: 100%;
+    }
+}
+
+
+.frameRate
+{
+    color: rgb(16, 216, 16);
+    font-size: x-large;
+}
+
+.title
+{
+    margin: 0px;
+    padding: 5px;
+    font-family: 'Tenor Sans', sans-serif;
+    font-size:xx-large;
+}
+
+body
+{
+    background-color: #222222;
+}
+
+p
+{
+    font-family: 'Quicksand', sans-serif;
+    text-align: justify;
+}
+
+img
+{
+    max-width: 65px;
+    opacity: 85%;
+}
+
