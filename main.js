@@ -80,22 +80,28 @@ function setup()
     mainPanel.child(logoPanel);
 
     linkedInProfile = createA("https://www.linkedin.com/in/nabil-babu/", "");
+    linkedInProfile.attribute("target", "_blank");
+    linkedInProfile.attribute("rel", "noopener noreferrer");
     linkedinLogo = createImg("imgs/linkedin.png", "");
     linkedInProfile.child(linkedinLogo);
     logoPanel.child(linkedInProfile);
 
     gitHubProfile = createA("https://github.com/Nabil-Babu", "");
+    gitHubProfile.attribute("target", "_blank");
+    gitHubProfile.attribute("rel", "noopener noreferrer");
     gitHubLogo = createImg("imgs/github.png", "");
     gitHubProfile.child(gitHubLogo);
     logoPanel.child(gitHubProfile);
 
     twitterProfile = createA("https://twitter.com/Nabil_Babu", "");
+    twitterProfile.attribute("target", "_blank");
+    twitterProfile.attribute("rel", "noopener noreferrer");
     twitterLogo = createImg("imgs/twitter.png", "");
     twitterProfile.child(twitterLogo);
     logoPanel.child(twitterProfile);
     
-    framerate = createP();
-    framerate.class("frameRate"); 
+    // framerate = createP();
+    // framerate.class("frameRate"); 
     
     cols = floor(fieldWidth/scale);  
     rows = floor(fieldHeight/scale);  
@@ -115,7 +121,8 @@ function draw()
     mainPanel.position(windowWidth/2-(mainPanel.elt.clientWidth/2), windowHeight/2-(mainPanel.elt.clientHeight/2))
     DrawFlowField();
     DrawParticles();
-    framerate.html(floor(frameRate()));
+    
+    // framerate.html(floor(frameRate()));
     
     // DrawVectors();
 }
