@@ -1,8 +1,9 @@
-Hi my name is Nabil, over the past few years, 
-I have grown as a software developer and artist. 
-This website is under construction to better reflect 
-that growth. I think algorithms and patterns can be as beautiful as flowers 
-or paintings. I take a deep interest in making procedurally generated content 
-and creating dynamic systems with artifical intelligence/life. I use these techniques to make video games, 
-art installations, websites and anything I think is cool. 
-Follow my socials if you want to reach out or see what I'm up to.
+Hi, my name is Nabil and I am a programmer and artist. 
+Over the past few years I have grown in these roles, 
+and this website is under construction to better reflect that growth. 
+I believe algorithms and patterns can be as beautiful as flowers or paintings. 
+I have a profound interest in making procedurally generated content and 
+creating dynamic systems with artificial intelligence / life. 
+I use these techniques to make video games, art installations, 
+websites and anything I find cool. Follow my socials to see 
+what I'm up to, or if you want to connect.
