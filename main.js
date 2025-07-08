@@ -40,18 +40,21 @@ let zOff = 0;
 
 // Flow Field Canvas
 let scale = 10;
-let cols, rows; 
+let tensorFlowCols, tensorFlowRows; 
 let flowfield = []; 
 let framerate; 
 
-// Particles
-let particles = [];
-let maxParticles = 6000;
+// Particle Emitter
+let particleEmitter;
+
+// DEBUG
+let debug = false; 
 
 function preload()
 {
     msgFromFile = loadStrings("resources/blerb.txt");
-    
+    debug = true;
+    particleEmitter = new ParticleEmitter(12000);
 }
 
 function setup()
@@ -60,20 +63,115 @@ function setup()
         displayMsg += element;   
     });
     ResizeFlowField();
-    
+  
     tensorFlowCanvas = createCanvas(fieldWidth, fieldHeight);
     tensorFlowCanvas.style("z-index", "-1");
     
+    SetupWelcomeHTML();
+    
+    framerate = createP();
+    framerate.class("frameRate"); 
+    
+    tensorFlowCols = floor(fieldWidth/scale);  
+    tensorFlowRows = floor(fieldHeight/scale);  
+
+    particleEmitter.InitParticles();
+
+    GenerateFlowField();
+    background("#222222");
+}
+
+function draw()
+{   
+    if(clearBackground)
+    {
+        background("#222222");
+    }
+    
+    particleEmitter.DrawParticles(flowfield);
+
+    if(debug)
+    {
+        //DrawVectors();
+        if(frameCount % 10 == 0)
+        {
+            framerate.html(floor(frameRate()));
+            console.log(floor(frameRate()));
+        }
+    }
+}
+
+function windowResized() {
+    ResizeFlowField();
+    resizeCanvas(fieldWidth, fieldHeight);
+}
+
+function ResizeFlowField()
+{
+    fieldWidth = windowWidth * windowSafeZone; 
+    fieldHeight = windowHeight * windowSafeZone;
+}
+
+function GenerateFlowField()
+{
+    yoff = 0; 
+    for (let y = 0; y < tensorFlowRows; y++) {
+        xoff = 0;
+        for (let x = 0; x < tensorFlowCols; x++) {
+            // loop over
+            let index = x + y * tensorFlowCols
+            let r = noise(xoff, yoff, zOff) * TWO_PI;
+            let vec = p5.Vector.fromAngle(r);
+            flowfield[index] = vec;
+            xoff += xInc;
+        }
+        yoff += yInc;
+    }
+    zOff += zInc;
+}
+
+function DrawVectors()
+{
+    for (let y = 0; y < tensorFlowRows; y++) {
+        for (let x = 0; x < tensorFlowCols; x++) {
+            let index = x + y * tensorFlowCols;
+            let vec = flowfield[index]; 
+            stroke(0,100,0);
+            push();
+                strokeWeight(1); 
+                translate(x * scale, y * scale);
+                rotate(vec.heading());
+                line(0,0, scale, 0);
+            pop();
+        }
+    } 
+}
+
+function mouseMoved()
+{
+    particleEmitter.particles.forEach(element => {
+        let mouseVec = createVector(mouseX, mouseY);
+        let distance = p5.Vector.dist(mouseVec, element.pos);
+        if(distance < 200)
+        {
+            let force = p5.Vector.sub(mouseVec, element.pos);
+            force.mult(100);
+            element.applyForce(force); 
+        } 
+    });
+}
+
+function SetupWelcomeHTML() {
     mainPanel = createDiv();
     mainPanel.class("mainPanel");
 
     logoPanel = createDiv();
     logoPanel.class("logoPanel");
-    
+
     titleMsg = createElement("div", titleMsg);
-    titleMsg.class("title")
+    titleMsg.class("title");
     displayMsg = createP(displayMsg);
-    
+
     mainPanel.child(titleMsg);
     mainPanel.child(displayMsg);
     mainPanel.child(logoPanel);
@@ -98,114 +196,7 @@ function setup()
     twitterLogo = createImg("imgs/twitter.png", "");
     twitterProfile.child(twitterLogo);
     logoPanel.child(twitterProfile);
-    
-    framerate = createP();
-    framerate.class("frameRate"); 
-    
-    cols = floor(fieldWidth/scale);  
-    rows = floor(fieldHeight/scale);  
-    
-    InitParticles();
-    
-    background("#222222");
-}
 
-function draw()
-{   
     tensorFlowCanvas.position(windowWidth/2-(tensorFlowCanvas.elt.clientWidth/2), windowHeight/2-(tensorFlowCanvas.elt.clientHeight/2));
     mainPanel.position(windowWidth/2-(mainPanel.elt.clientWidth/2), windowHeight/2-(mainPanel.elt.clientHeight/2))
-
-    if(clearBackground)
-    {
-        background("#222222");
-    }
-    DrawFlowField();
-    DrawParticles();    
-}
-
-function windowResized() {
-    ResizeFlowField();
-    resizeCanvas(fieldWidth, fieldHeight);
-}
-
-function ResizeFlowField()
-{
-    fieldWidth = windowWidth * windowSafeZone; 
-    fieldHeight = windowHeight * windowSafeZone;
-}
-
-function DrawFlowField()
-{
-    yoff = 0; 
-    for (let y = 0; y < rows; y++) {
-        xoff = 0;
-        for (let x = 0; x < cols; x++) {
-            // loop over
-            let index = x + y * cols
-            let r = noise(xoff, yoff, zOff) * TWO_PI;
-            let vec = p5.Vector.fromAngle(r);
-            flowfield[index] = vec;
-            xoff += xInc;
-        }
-        yoff += yInc;
-    }
-    zOff += zInc;
-}
-
-function InitParticles()
-{
-    for (let i = 0; i < maxParticles; i++) {
-        particles[i] = new Particle();
-    }
-}
-
-function DrawParticles()
-{
-    for (let i = 0; i < particles.length; i++) {
-        
-        // Add force from flow field 
-        particles[i].follow(flowfield);
-        
-        // Update particle velocity
-        if(updateParticles)
-        {
-            particles[i].update();
-            // Draw Particle
-            particles[i].show();
-        }      
-            
-        //Detect Edges
-        particles[i].edges();
-    }
-}
-
-function DrawVectors()
-{
-    for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-            let index = x + y * cols;
-            let vec = flowfield[index]; 
-            stroke(100);
-            push();
-                strokeWeight(1); 
-                translate(x * scale, y * scale);
-                rotate(vec.heading());
-                line(0,0, scale, 0);
-            pop();
-        }
-    } 
-}
-
-function mouseMoved()
-{
-    particles.forEach(element => {
-        let mouseVec = createVector(mouseX, mouseY);
-        let distance = p5.Vector.dist(mouseVec, element.pos);
-        if(distance < 200)
-        {
-            let force = p5.Vector.sub(mouseVec, element.pos);
-            force.mult(100);
-            element.applyForce(force); 
-        } 
-    });
 }

@@ -1,12 +1,26 @@
 class Particle
 {
+    // Public Fields
+    pos;
+    vel;
+    acc;
+    maxSpeed = 0;
+    color1;
+    color2;
+    enableColorLerp = true;
+    
+    // Private Fields
+    #activeColor;
+
     constructor()
     {
         this.pos = createVector(random(width*.95, width),random(height)); 
         this.vel = createVector(0,0);
         this.acc = createVector(0,0);
-        this.maxSpeed = random(0.35, 1.0);
-        this.color = color(181,244,74, 50); 
+        this.maxSpeed = random(0.15, 0.9);
+        this.color1 = color(0,255,159, 50);
+        this.color2 = color(0,30,255, 50);
+        this.#activeColor = this.color1;
     }
 
     update()
@@ -14,7 +28,11 @@ class Particle
         this.vel.add(this.acc);
         this.vel.limit(this.maxSpeed);
         this.pos.add(this.vel);
-        this.acc.mult(0); 
+        this.acc.mult(0);
+        if(this.enableColorLerp)
+        {
+            this.#activeColor = lerpColor(this.color2, this.color1, this.pos.x/width);
+        }
     }
 
     applyForce(force)
@@ -24,10 +42,13 @@ class Particle
 
     show()
     {
-        stroke(this.color);
+        stroke(this.#activeColor);
         strokeWeight(3);
         point(this.pos.x, this.pos.y);
-        //circle(this.pos.x, this.pos.y, 5);
+
+        // noStroke();
+        // fill(this.#activeColor);
+        // circle(this.pos.x, this.pos.y, 2);
     }
 
     edges()
@@ -65,7 +86,7 @@ class Particle
     {
         let x = floor(this.pos.x / scale);
         let y = floor(this.pos.y / scale);
-        let index = x + y * cols;
+        let index = x + y * tensorFlowCols;
         let force = flowfield[index];
         this.applyForce(force);
     }
