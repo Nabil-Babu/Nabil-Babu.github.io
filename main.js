@@ -8,6 +8,8 @@ let displayMsg = "";
 let mainPanel;
 let logoPanel;  
 let tensorFlowCanvas;
+let clearBackground = true;
+let updateParticles = true;
 
 // Social Media Icons
 let linkedinLogo;
@@ -40,14 +42,11 @@ let zOff = 0;
 let scale = 10;
 let cols, rows; 
 let flowfield = []; 
-
-
 let framerate; 
 
 // Particles
 let particles = [];
-let maxParticles = 3000;
-
+let maxParticles = 6000;
 
 function preload()
 {
@@ -100,8 +99,8 @@ function setup()
     twitterProfile.child(twitterLogo);
     logoPanel.child(twitterProfile);
     
-    // framerate = createP();
-    // framerate.class("frameRate"); 
+    framerate = createP();
+    framerate.class("frameRate"); 
     
     cols = floor(fieldWidth/scale);  
     rows = floor(fieldHeight/scale);  
@@ -112,19 +111,16 @@ function setup()
 }
 
 function draw()
-{
-    // background(0, 0, 0);
-    // titleMsg.position(windowWidth/2-(titleMsg.elt.clientWidth/2), windowHeight/2);
-    // mainMsg.position(windowWidth/2-(mainMsg.elt.clientWidth/2), windowHeight/2+20);
-    
+{   
     tensorFlowCanvas.position(windowWidth/2-(tensorFlowCanvas.elt.clientWidth/2), windowHeight/2-(tensorFlowCanvas.elt.clientHeight/2));
     mainPanel.position(windowWidth/2-(mainPanel.elt.clientWidth/2), windowHeight/2-(mainPanel.elt.clientHeight/2))
+
+    if(clearBackground)
+    {
+        background("#222222");
+    }
     DrawFlowField();
-    DrawParticles();
-    
-    // framerate.html(floor(frameRate()));
-    
-    // DrawVectors();
+    DrawParticles();    
 }
 
 function windowResized() {
@@ -150,7 +146,6 @@ function DrawFlowField()
             let vec = p5.Vector.fromAngle(r);
             flowfield[index] = vec;
             xoff += xInc;
-            //DrawVectors(vec);
         }
         yoff += yInc;
     }
@@ -167,10 +162,20 @@ function InitParticles()
 function DrawParticles()
 {
     for (let i = 0; i < particles.length; i++) {
-        particles[i].follow(flowfield);  
-        particles[i].update(); 
-        particles[i].edges(); 
-        particles[i].show();
+        
+        // Add force from flow field 
+        particles[i].follow(flowfield);
+        
+        // Update particle velocity
+        if(updateParticles)
+        {
+            particles[i].update();
+            // Draw Particle
+            particles[i].show();
+        }      
+            
+        //Detect Edges
+        particles[i].edges();
     }
 }
 
