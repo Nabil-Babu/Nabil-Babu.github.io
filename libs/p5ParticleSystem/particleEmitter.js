@@ -8,17 +8,17 @@ class ParticleEmitter
         this.maxParticles = maxParticles;
     }
 
-    DrawParticles(flowfield)
+    DrawParticles(tensorFlowField)
     {
         for (let i = 0; i < this.particles.length; i++) 
         {
             // Add force from flow field 
-            this.particles[i].follow(flowfield);
+            this.particles[i].follow(tensorFlowField);
             
             // Update particle velocity
             this.particles[i].update();
 
-            //Detect Edges
+            // Detect Edges
             this.particles[i].edges();
             
             // Draw Particle

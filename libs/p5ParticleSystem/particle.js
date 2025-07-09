@@ -14,7 +14,7 @@ class Particle
 
     constructor()
     {
-        this.pos = createVector(random(width*.95, width),random(height)); 
+        this.pos = createVector(random(width*.99, width),random(height*0.05, height-(height*0.05))); 
         this.vel = createVector(0,0);
         this.acc = createVector(0,0);
         this.maxSpeed = random(0.15, 0.9);
@@ -45,10 +45,6 @@ class Particle
         stroke(this.#activeColor);
         strokeWeight(3);
         point(this.pos.x, this.pos.y);
-
-        // noStroke();
-        // fill(this.#activeColor);
-        // circle(this.pos.x, this.pos.y, 2);
     }
 
     edges()
@@ -82,12 +78,12 @@ class Particle
         return hitEdge;
     }
 
-    follow(flowfield)
+    follow(tensorFlowField)
     {
-        let x = floor(this.pos.x / scale);
-        let y = floor(this.pos.y / scale);
-        let index = x + y * tensorFlowCols;
-        let force = flowfield[index];
+        let x = floor(this.pos.x / tensorFlowField.cellSize);
+        let y = floor(this.pos.y / tensorFlowField.cellSize);
+        let index = x + y * tensorFlowField.tensorFlowCols;
+        let force = tensorFlowField.flowfield[index];
         this.applyForce(force);
     }
 }

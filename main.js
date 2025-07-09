@@ -7,9 +7,7 @@ let msgFromFile;
 let displayMsg = "";
 let mainPanel;
 let logoPanel;  
-let tensorFlowCanvas;
-let clearBackground = true;
-let updateParticles = true;
+let sketchCanvas;
 
 // Social Media Icons
 let linkedinLogo;
@@ -25,36 +23,24 @@ let twitterProfile;
 let windowSafeZone = 1; 
 
 // Default size of the Canvas
-let fieldWidth; 
-let fieldHeight; 
-
-// Noise Increment Step
-let xInc = 0.1; 
-let yInc = 0.1; 
-let zInc = 0.0005;
-
-// Noise offsets
-let xoff = 0;
-let yoff = 0;  
-let zOff = 0;
-
-// Flow Field Canvas
-let scale = 10;
-let tensorFlowCols, tensorFlowRows; 
-let flowfield = []; 
-let framerate; 
+let canvasWidth; 
+let canvasHeight; 
 
 // Particle Emitter
 let particleEmitter;
 
+// Tensor Flow Field
+let tensorFlowField;
+
 // DEBUG
-let debug = false; 
+let debug = false;
+let framerate;  
 
 function preload()
 {
     msgFromFile = loadStrings("resources/blerb.txt");
-    debug = true;
-    particleEmitter = new ParticleEmitter(12000);
+    particleEmitter = new ParticleEmitter(10000);
+    tensorFlowField = new TensorFlowField(debug)
 }
 
 function setup()
@@ -62,89 +48,45 @@ function setup()
     msgFromFile.forEach(element => {
         displayMsg += element;   
     });
-    ResizeFlowField();
+
+    canvasWidth = windowWidth * windowSafeZone; 
+    canvasHeight = windowHeight * windowSafeZone;
   
-    tensorFlowCanvas = createCanvas(fieldWidth, fieldHeight);
-    tensorFlowCanvas.style("z-index", "-1");
+    sketchCanvas = createCanvas(canvasWidth, canvasHeight);
+    sketchCanvas.style("z-index", "-1");
     
     SetupWelcomeHTML();
     
     framerate = createP();
     framerate.class("frameRate"); 
-    
-    tensorFlowCols = floor(fieldWidth/scale);  
-    tensorFlowRows = floor(fieldHeight/scale);  
 
     particleEmitter.InitParticles();
+    tensorFlowField.GenerateFlowField(canvasWidth, canvasHeight);
 
-    GenerateFlowField();
     background("#222222");
 }
 
 function draw()
 {   
-    if(clearBackground)
-    {
-        background("#222222");
-    }
+    background("#222222");
     
-    particleEmitter.DrawParticles(flowfield);
-
+    particleEmitter.DrawParticles(tensorFlowField);
+    tensorFlowField.Draw();
+    
     if(debug)
     {
-        //DrawVectors();
-        if(frameCount % 10 == 0)
+        if(frameCount % 4 == 0)
         {
             framerate.html(floor(frameRate()));
-            console.log(floor(frameRate()));
         }
     }
 }
 
-function windowResized() {
-    ResizeFlowField();
-    resizeCanvas(fieldWidth, fieldHeight);
-}
-
-function ResizeFlowField()
+function windowResized() 
 {
-    fieldWidth = windowWidth * windowSafeZone; 
-    fieldHeight = windowHeight * windowSafeZone;
-}
-
-function GenerateFlowField()
-{
-    yoff = 0; 
-    for (let y = 0; y < tensorFlowRows; y++) {
-        xoff = 0;
-        for (let x = 0; x < tensorFlowCols; x++) {
-            // loop over
-            let index = x + y * tensorFlowCols
-            let r = noise(xoff, yoff, zOff) * TWO_PI;
-            let vec = p5.Vector.fromAngle(r);
-            flowfield[index] = vec;
-            xoff += xInc;
-        }
-        yoff += yInc;
-    }
-    zOff += zInc;
-}
-
-function DrawVectors()
-{
-    for (let y = 0; y < tensorFlowRows; y++) {
-        for (let x = 0; x < tensorFlowCols; x++) {
-            let index = x + y * tensorFlowCols;
-            let vec = flowfield[index]; 
-            stroke(0,100,0);
-            push();
-                strokeWeight(1); 
-                translate(x * scale, y * scale);
-                rotate(vec.heading());
-                line(0,0, scale, 0);
-            pop();
-        }
-    } 
+    canvasWidth = windowWidth * windowSafeZone; 
+    canvasHeight = windowHeight * windowSafeZone;
+    resizeCanvas(canvasWidth, canvasHeight);
 }
 
 function mouseMoved()
@@ -197,6 +139,6 @@ function SetupWelcomeHTML() {
     twitterProfile.child(twitterLogo);
     logoPanel.child(twitterProfile);
 
-    tensorFlowCanvas.position(windowWidth/2-(tensorFlowCanvas.elt.clientWidth/2), windowHeight/2-(tensorFlowCanvas.elt.clientHeight/2));
+    sketchCanvas.position(windowWidth/2-(sketchCanvas.elt.clientWidth/2), windowHeight/2-(sketchCanvas.elt.clientHeight/2));
     mainPanel.position(windowWidth/2-(mainPanel.elt.clientWidth/2), windowHeight/2-(mainPanel.elt.clientHeight/2))
 }
