@@ -18,8 +18,8 @@ class Particle
         this.vel = createVector(0,0);
         this.acc = createVector(0,0);
         this.maxSpeed = random(0.15, 0.9);
-        this.color1 = color(0,255,159, 50);
-        this.color2 = color(0,30,255, 50);
+        this.color1 = color('#fee9017c');
+        this.color2 = color("#54c1e675");
         this.#activeColor = this.color1;
     }
 

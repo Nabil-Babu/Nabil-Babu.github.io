@@ -2,11 +2,17 @@
 
 "use strict";
 
-let titleMsg = "im in_Repair..";
+// Strings
+let titleMsg = "im in_Repair...";
 let msgFromFile;
 let displayMsg = "";
+
+// Panels and Containers
 let mainPanel;
-let logoPanel;  
+let titleContainer
+let msgContainer;
+let logoBanner;  
+
 let sketchCanvas;
 
 // Social Media Icons
@@ -63,12 +69,12 @@ function setup()
     particleEmitter.InitParticles();
     tensorFlowField.GenerateFlowField(canvasWidth, canvasHeight);
 
-    background("#222222");
+    background('#00060e');
 }
 
 function draw()
 {   
-    background("#222222");
+    background('#00060e');
     
     particleEmitter.DrawParticles(tensorFlowField);
     tensorFlowField.Draw();
@@ -80,6 +86,20 @@ function draw()
             framerate.html(floor(frameRate()));
         }
     }
+
+    if(mouseIsPressed)
+    {
+        particleEmitter.particles.forEach(element => {
+        let mouseVec = createVector(mouseX, mouseY);
+        let distance = p5.Vector.dist(mouseVec, element.pos);
+            if(distance < 200)
+            {
+                let force = p5.Vector.sub(mouseVec, element.pos);
+                force.mult(100);
+                element.applyForce(force); 
+            } 
+        });
+    }
 }
 
 function windowResized() 
@@ -89,55 +109,43 @@ function windowResized()
     resizeCanvas(canvasWidth, canvasHeight);
 }
 
-function mouseMoved()
+function SetupWelcomeHTML() 
 {
-    particleEmitter.particles.forEach(element => {
-        let mouseVec = createVector(mouseX, mouseY);
-        let distance = p5.Vector.dist(mouseVec, element.pos);
-        if(distance < 200)
-        {
-            let force = p5.Vector.sub(mouseVec, element.pos);
-            force.mult(100);
-            element.applyForce(force); 
-        } 
-    });
-}
 
-function SetupWelcomeHTML() {
     mainPanel = createDiv();
-    mainPanel.class("mainPanel");
+    logoBanner = createDiv();
+    titleContainer = createDiv(titleMsg);
+    msgContainer = createDiv(displayMsg);
 
-    logoPanel = createDiv();
-    logoPanel.class("logoPanel");
-
-    titleMsg = createElement("div", titleMsg);
-    titleMsg.class("title");
-    displayMsg = createP(displayMsg);
-
-    mainPanel.child(titleMsg);
-    mainPanel.child(displayMsg);
-    mainPanel.child(logoPanel);
+    mainPanel.class("mainCard");
+    logoBanner.class("logoContainer");
+    titleContainer.class("titleContainer");
+    msgContainer.class("msgContainer");
+    
+    mainPanel.child(titleContainer);
+    mainPanel.child(msgContainer);
+    mainPanel.child(logoBanner);
 
     linkedInProfile = createA("https://www.linkedin.com/in/nabil-babu/", "");
     linkedInProfile.attribute("target", "_blank");
     linkedInProfile.attribute("rel", "noopener noreferrer");
     linkedinLogo = createImg("imgs/linkedin.png", "");
     linkedInProfile.child(linkedinLogo);
-    logoPanel.child(linkedInProfile);
+    logoBanner.child(linkedInProfile);
 
     gitHubProfile = createA("https://github.com/Nabil-Babu", "");
     gitHubProfile.attribute("target", "_blank");
     gitHubProfile.attribute("rel", "noopener noreferrer");
     gitHubLogo = createImg("imgs/github.png", "");
     gitHubProfile.child(gitHubLogo);
-    logoPanel.child(gitHubProfile);
+    logoBanner.child(gitHubProfile);
 
     twitterProfile = createA("https://twitter.com/Nabil_Babu", "");
     twitterProfile.attribute("target", "_blank");
     twitterProfile.attribute("rel", "noopener noreferrer");
     twitterLogo = createImg("imgs/twitter.png", "");
     twitterProfile.child(twitterLogo);
-    logoPanel.child(twitterProfile);
+    logoBanner.child(twitterProfile);
 
     sketchCanvas.position(windowWidth/2-(sketchCanvas.elt.clientWidth/2), windowHeight/2-(sketchCanvas.elt.clientHeight/2));
     mainPanel.position(windowWidth/2-(mainPanel.elt.clientWidth/2), windowHeight/2-(mainPanel.elt.clientHeight/2))
