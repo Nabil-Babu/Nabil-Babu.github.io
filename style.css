@@ -100,14 +100,8 @@ body
     color: var(--primary-color);
     font-family: 'Tenor Sans', sans-serif;
     font-size:xx-large;
-    max-width: 220px;
-    width: 0%;
-    border-right: 2px solid var(--primary-dark);
     white-space: nowrap;
-    overflow: hidden;
-    animation: 
-        slideInFromBottom var(--duration-slow) var(--ease-out) 0.3s,
-        typing 5s steps(50) 1 0.3s;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.3s;
     animation-fill-mode: forwards;
 }
 
@@ -216,11 +210,20 @@ body
     }
 }
 
-@keyframes typing {
-    from {
-        width: 0%;
+/* Blinking cursor element */
+.typing-cursor {
+    color: var(--primary-color);
+    font-weight: normal;
+    animation: cursorBlink 1s step-end infinite;
+    margin-left: 2px;
+}
+
+/* Cursor blink animation (0.5s visible, 0.5s hidden) */
+@keyframes cursorBlink {
+    0%, 50% {
+        opacity: 1;
     }
-    to {
-        width: 100%;
+    51%, 100% {
+        opacity: 0;
     }
 }

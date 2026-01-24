@@ -142,9 +142,9 @@ function SetupWelcomeHTML()
     githubLogoContainer = createDiv();
     profilePicContainer = createDiv();
     overviewMsgContainer = createDiv(overviewDataMsg);
-    titleContainer = createDiv(titleIntroString);
+    titleContainer = createDiv("");
     msgContainer = createDiv(introMsg);
-    socialsTitleContainer = createDiv(socialsString);
+    socialsTitleContainer = createDiv("");
     
     // IMG's
     myPic = createImg("imgs/me.jpg");
@@ -205,4 +205,31 @@ function SetupWelcomeHTML()
 
     sketchCanvas.position(windowWidth/2-(sketchCanvas.elt.clientWidth/2), windowHeight/2-(sketchCanvas.elt.clientHeight/2));
     mainCardContainer.position(windowWidth/2-(mainCardContainer.elt.clientWidth/2), windowHeight/2-(mainCardContainer.elt.clientHeight/2))
+
+    // Initialize TypeWriter for main title
+    let titleTypeWriter = new TypeWriter(
+        titleContainer,
+        titleIntroString,
+        {
+            minDelay: 40,
+            maxDelay: 90,
+            startDelay: 800,  // Wait for slide-in (0.3s delay + 0.5s duration)
+            onComplete: () => console.log("Title typing complete")
+        }
+    );
+
+    // Initialize TypeWriter for socials title
+    let socialsTypeWriter = new TypeWriter(
+        socialsTitleContainer,
+        socialsString,
+        {
+            minDelay: 40,
+            maxDelay: 90,
+            startDelay: 800
+        }
+    );
+
+    // Start both animations (parallel typing)
+    titleTypeWriter.start();
+    socialsTypeWriter.start();
 }
