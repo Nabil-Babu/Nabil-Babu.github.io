@@ -3,22 +3,40 @@
 "use strict";
 
 // Strings
-let titleMsg = "im in_Repair...";
-let msgFromFile;
-let displayMsg = "";
+let titleIntroString = "Hello, world....";
+let socialsString = "Socials....";
+let overviewString = "Overview...."
+let introMsg = "";
+let overviewDataMsg = ""
 
-// Panels and Containers
-let mainPanel;
+//Files I/O
+let introFromFile;
+let overviewFromFile;
+
+// Cards and Containers (Cards hold containers?)
+let mainCardContainer;
+let introCard;
+let logoCard;
+let overviewCard;
+let overviewMsgContainer;
+let introContainer
 let titleContainer
 let msgContainer;
-let logoBanner;  
+let socialsTitleContainer
+let socialsLogoContainer;
+let linkedInLogoContainer;  
+let twitterLogoContainer;  
+let githubLogoContainer;
+let profilePicContainer;  
 
+// p.5 Canvas
 let sketchCanvas;
 
-// Social Media Icons
+// Social Media Icons and Imgs
 let linkedinLogo;
 let gitHubLogo;
 let twitterLogo;
+let myPic;
 
 // Social Media links
 let linkedInProfile;
@@ -44,16 +62,17 @@ let framerate;
 
 function preload()
 {
-    msgFromFile = loadStrings("resources/blerb.txt");
+    introFromFile = loadStrings("resources/blerb.txt");
+    overviewFromFile = loadStrings("resources/overview.txt");
     particleEmitter = new ParticleEmitter(10000);
     tensorFlowField = new TensorFlowField(debug)
 }
 
 function setup()
 {
-    msgFromFile.forEach(element => {
-        displayMsg += element;   
-    });
+    introMsg = introFromFile.join('\n');
+
+    overviewDataMsg = overviewFromFile.join('\n');
 
     canvasWidth = windowWidth * windowSafeZone; 
     canvasHeight = windowHeight * windowSafeZone;
@@ -111,42 +130,79 @@ function windowResized()
 
 function SetupWelcomeHTML() 
 {
-
-    mainPanel = createDiv();
-    logoBanner = createDiv();
-    titleContainer = createDiv(titleMsg);
-    msgContainer = createDiv(displayMsg);
-
-    mainPanel.class("mainCard");
-    logoBanner.class("logoContainer");
-    titleContainer.class("titleContainer");
-    msgContainer.class("msgContainer");
+    // Making DIVS 
+    mainCardContainer = createDiv();
+    introCard = createDiv();
+    logoCard = createDiv();
+    overviewCard = createDiv();
+    introContainer = createDiv();
+    socialsLogoContainer = createDiv();
+    linkedInLogoContainer = createDiv();
+    twitterLogoContainer = createDiv();
+    githubLogoContainer = createDiv();
+    profilePicContainer = createDiv();
+    overviewMsgContainer = createDiv(overviewDataMsg);
+    titleContainer = createDiv(titleIntroString);
+    msgContainer = createDiv(introMsg);
+    socialsTitleContainer = createDiv(socialsString);
     
-    mainPanel.child(titleContainer);
-    mainPanel.child(msgContainer);
-    mainPanel.child(logoBanner);
+    // IMG's
+    myPic = createImg("imgs/me.jpg");
+    linkedinLogo = createImg("imgs/linkedin.png", "");
+    gitHubLogo = createImg("imgs/github.png", "");
+    twitterLogo = createImg("imgs/twitter.png", "");
 
+    // Adding Classes to DIVS
+    mainCardContainer.class("container")
+    introCard.class("defaultCard");
+    logoCard.class("defaultCard");
+    overviewCard.class("defaultCard");
+    socialsLogoContainer.class("logoContainer");
+    titleContainer.class("titleContainer");
+    socialsTitleContainer.class("titleContainer");
+    msgContainer.class("msgContainer");
+    overviewMsgContainer.class("msgContainer");
+    introContainer.class("introContainer");
+    profilePicContainer.class("profilePic");
+    linkedInLogoContainer.class("socialLogo");
+    githubLogoContainer.class("socialLogo");
+    twitterLogoContainer.class("socialLogo");
+    
+    // Setting up hierarchies of DIVS
+    mainCardContainer.child(overviewCard);
+    mainCardContainer.child(introCard);
+    mainCardContainer.child(logoCard);
+    logoCard.child(socialsTitleContainer);
+    logoCard.child(socialsLogoContainer);
+    introContainer.child(titleContainer);
+    introContainer.child(msgContainer);
+    introCard.child(introContainer);
+    linkedInLogoContainer.child(linkedinLogo);
+    githubLogoContainer.child(gitHubLogo);
+    twitterLogoContainer.child(twitterLogo);
+    profilePicContainer.child(myPic);
+    overviewCard.child(profilePicContainer);
+    overviewCard.child(overviewMsgContainer);
+
+    // Logo Links MORE DIVS
     linkedInProfile = createA("https://www.linkedin.com/in/nabil-babu/", "");
     linkedInProfile.attribute("target", "_blank");
     linkedInProfile.attribute("rel", "noopener noreferrer");
-    linkedinLogo = createImg("imgs/linkedin.png", "");
-    linkedInProfile.child(linkedinLogo);
-    logoBanner.child(linkedInProfile);
+    linkedInProfile.child(linkedInLogoContainer);
+    socialsLogoContainer.child(linkedInProfile);
 
     gitHubProfile = createA("https://github.com/Nabil-Babu", "");
     gitHubProfile.attribute("target", "_blank");
     gitHubProfile.attribute("rel", "noopener noreferrer");
-    gitHubLogo = createImg("imgs/github.png", "");
-    gitHubProfile.child(gitHubLogo);
-    logoBanner.child(gitHubProfile);
+    gitHubProfile.child(githubLogoContainer);
+    socialsLogoContainer.child(gitHubProfile);
 
     twitterProfile = createA("https://twitter.com/Nabil_Babu", "");
     twitterProfile.attribute("target", "_blank");
     twitterProfile.attribute("rel", "noopener noreferrer");
-    twitterLogo = createImg("imgs/twitter.png", "");
-    twitterProfile.child(twitterLogo);
-    logoBanner.child(twitterProfile);
+    twitterProfile.child(twitterLogoContainer);
+    socialsLogoContainer.child(twitterProfile);
 
     sketchCanvas.position(windowWidth/2-(sketchCanvas.elt.clientWidth/2), windowHeight/2-(sketchCanvas.elt.clientHeight/2));
-    mainPanel.position(windowWidth/2-(mainPanel.elt.clientWidth/2), windowHeight/2-(mainPanel.elt.clientHeight/2))
+    mainCardContainer.position(windowWidth/2-(mainCardContainer.elt.clientWidth/2), windowHeight/2-(mainCardContainer.elt.clientHeight/2))
 }
