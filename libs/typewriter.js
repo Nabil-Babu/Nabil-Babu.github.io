@@ -10,6 +10,7 @@ class TypeWriter {
         this.maxDelay = options.maxDelay || 100;
         this.startDelay = options.startDelay || 0;
         this.onComplete = options.onComplete || null;
+        this.hideCursorOnComplete = options.hideCursorOnComplete || false;
 
         this.cursorElement = null;
         this.typingTimer = null;
@@ -73,8 +74,14 @@ class TypeWriter {
                 this.typeNextCharacter();
             }, delay);
         } else {
-            // Typing complete - cursor continues blinking via CSS
+            // Typing complete
             this.isComplete = true;
+
+            // Hide cursor if option is set
+            if (this.hideCursorOnComplete && this.cursorElement) {
+                this.cursorElement.style.display = 'none';
+            }
+
             if (this.onComplete) {
                 this.onComplete();
             }
