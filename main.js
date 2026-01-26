@@ -3,9 +3,9 @@
 "use strict";
 
 // Strings
-let titleIntroString = "Hello, world....";
-let socialsString = "Socials....";
-let projectString = "Projects (Current/Past)....";
+let titleIntroString = "Hello, world...";
+let socialsString = "Socials...";
+let projectString = "Projects...";
 let overviewString = "";
 let introMsg = "";
 let overviewDataMsg = "";
@@ -125,7 +125,13 @@ function draw()
         }
     }
 
-    mainCardContainer.position(windowWidth/2-(mainCardContainer.elt.clientWidth/2), windowHeight/2-(mainCardContainer.elt.clientHeight/2))
+    // Only position if content fits in viewport (desktop behavior)
+    if (mainCardContainer.elt.clientHeight < windowHeight - 20) {
+        mainCardContainer.position(
+            windowWidth/2 - (mainCardContainer.elt.clientWidth/2),
+            windowHeight/2 - (mainCardContainer.elt.clientHeight/2)
+        );
+    }
 
     if(mouseIsPressed)
     {

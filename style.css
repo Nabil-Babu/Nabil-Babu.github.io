@@ -46,9 +46,12 @@
 
 /* HTML Tags */
 
-body
-{
+body {
+    margin: 0;
+    padding: 0;
     background-color: var(--primary-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* CSS Classes */
@@ -190,17 +193,23 @@ body
 
 
 /* Media Queries */
-@media all and (max-width: 1200px){
-    .mainCard
-    {
+@media all and (max-width: 1200px) {
+    .container {
         max-width: 75%;
     }
 }
 
-@media all and (max-width: 500px){
-    .mainCard
-    {
-        max-width: 100%;
+@media all and (max-width: 768px) {
+    .container {
+        position: static !important;
+        max-width: 90%;
+        margin: 1rem auto;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .container {
+        max-width: 95%;
     }
 }
 
