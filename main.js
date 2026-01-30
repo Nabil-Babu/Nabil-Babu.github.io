@@ -31,6 +31,7 @@ let socialsLogoContainer;
 let linkedInLogoContainer;  
 let twitterLogoContainer;  
 let githubLogoContainer;
+let blueskyLogoContainer;
 let profilePicContainer;
 let projTitleCont;
 let projImgCont;
@@ -46,6 +47,7 @@ let sketchCanvas;
 let linkedinLogo;
 let gitHubLogo;
 let twitterLogo;
+let blueskyLogo;
 let myPic;
 let raftImg;
 let rgirlImg;
@@ -55,6 +57,7 @@ let scv66Img;
 let linkedInProfile;
 let gitHubProfile
 let twitterProfile;
+let blueskyProfile;
 let raftSteam;
 let rgirlSteam;
 let scv66Steam;
@@ -166,8 +169,9 @@ function SetupWelcomeHTML()
     introContainer = createDiv();
     socialsLogoContainer = createDiv();
     linkedInLogoContainer = createDiv();
-    twitterLogoContainer = createDiv();
+    //twitterLogoContainer = createDiv();
     githubLogoContainer = createDiv();
+    blueskyLogoContainer = createDiv();
     profilePicContainer = createDiv();
     overviewMsgContainer = createDiv(overviewDataMsg);
     titleContainer = createDiv("");
@@ -185,7 +189,8 @@ function SetupWelcomeHTML()
     myPic = createImg("imgs/me.jpg");
     linkedinLogo = createImg("imgs/linkedin.png", "");
     gitHubLogo = createImg("imgs/github.png", "");
-    twitterLogo = createImg("imgs/twitter.png", "");
+    //twitterLogo = createImg("imgs/twitter.png", "");
+    blueskyLogo = createImg("imgs/bluesky.png", "");
     raftImg = createImg("imgs/CloudBazaar.png", "");
     rgirlImg = createImg("imgs/RollerGirl.png", "");
     scv66Img = createImg("imgs/Scaravan66.png", "");
@@ -210,7 +215,8 @@ function SetupWelcomeHTML()
     profilePicContainer.class("profilePic");
     linkedInLogoContainer.class("socialLogo");
     githubLogoContainer.class("socialLogo");
-    twitterLogoContainer.class("socialLogo");
+    //twitterLogoContainer.class("socialLogo");
+    blueskyLogoContainer.class("socialLogo");
     quotesCont.class("quotesContainer");
     
     // Setting up hierarchies of DIVS
@@ -230,7 +236,8 @@ function SetupWelcomeHTML()
     introCard.child(introContainer);
     linkedInLogoContainer.child(linkedinLogo);
     githubLogoContainer.child(gitHubLogo);
-    twitterLogoContainer.child(twitterLogo);
+    //twitterLogoContainer.child(twitterLogo);
+    blueskyLogoContainer.child(blueskyLogo);
     profilePicContainer.child(myPic);
     raftImgCont.child(raftImg);
     rgirlImgCont.child(rgirlImg);
@@ -249,11 +256,17 @@ function SetupWelcomeHTML()
     gitHubProfile.child(githubLogoContainer);
     socialsLogoContainer.child(gitHubProfile);
 
-    twitterProfile = createA("https://twitter.com/Nabil_Babu", "");
-    twitterProfile.attribute("target", "_blank");
-    twitterProfile.attribute("rel", "noopener noreferrer");
-    twitterProfile.child(twitterLogoContainer);
-    socialsLogoContainer.child(twitterProfile);
+    // twitterProfile = createA("https://twitter.com/Nabil_Babu", "");
+    // twitterProfile.attribute("target", "_blank");
+    // twitterProfile.attribute("rel", "noopener noreferrer");
+    // twitterProfile.child(twitterLogoContainer);
+    // socialsLogoContainer.child(twitterProfile);
+
+    blueskyProfile = createA("https://bsky.app/profile/nabilbabu.bsky.social", "");
+    blueskyProfile.attribute("target", "_blank");
+    blueskyProfile.attribute("rel", "noopener noreferrer");
+    blueskyProfile.child(blueskyLogoContainer);
+    socialsLogoContainer.child(blueskyProfile);
 
     raftSteam = createA("https://store.steampowered.com/app/2222920/The_Cloud_Bazaar/","");
     raftSteam.attribute("target", "_blank");
