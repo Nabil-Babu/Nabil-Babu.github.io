@@ -190,7 +190,7 @@ function SetupWelcomeHTML()
     linkedinLogo = createImg("imgs/linkedin.png", "");
     gitHubLogo = createImg("imgs/github.png", "");
     //twitterLogo = createImg("imgs/twitter.png", "");
-    blueskyLogo = createImg("imgs/bluesky.png", "");
+    blueskyLogo = createImg("imgs/Bluesky.png", "");
     raftImg = createImg("imgs/CloudBazaar.png", "");
     rgirlImg = createImg("imgs/RollerGirl.png", "");
     scv66Img = createImg("imgs/Scaravan66.png", "");
