@@ -1,6 +1,6 @@
 class TypeWriter {
     constructor(element, fullText, options = {}) {
-        this.element = element;              // p5.Element container
+        this.element = element;              // DOM element container
         this.fullText = fullText;            // Complete string to type
         this.currentIndex = 0;               // Current character position
         this.isComplete = false;
@@ -21,13 +21,13 @@ class TypeWriter {
         let cursorSpan = document.createElement('span');
         cursorSpan.className = 'typing-cursor';
         cursorSpan.textContent = '|';
-        this.element.elt.appendChild(cursorSpan);
+        this.element.appendChild(cursorSpan);
         this.cursorElement = cursorSpan;
     }
 
     start() {
         this.stop();  // Cancel any existing animation
-        this.element.html('');
+        this.element.replaceChildren();
         this.currentIndex = 0;
         this.isComplete = false;
 
@@ -40,7 +40,7 @@ class TypeWriter {
 
     typeNextCharacter() {
         // Validate element still exists
-        if (!this.element.elt || !document.body.contains(this.element.elt)) {
+        if (!this.element || !document.body.contains(this.element)) {
             this.stop();
             return;
         }
@@ -52,14 +52,14 @@ class TypeWriter {
             let currentText = this.fullText.substring(0, this.currentIndex + 1);
 
             // Find existing text node or create new one
-            let textNode = this.element.elt.childNodes[0];
+            let textNode = this.element.childNodes[0];
             if (textNode && textNode.nodeType === Node.TEXT_NODE) {
                 // Update existing text node
                 textNode.textContent = currentText;
             } else {
                 // Create new text node and insert before cursor
                 let newTextNode = document.createTextNode(currentText);
-                this.element.elt.insertBefore(newTextNode, this.cursorElement);
+                this.element.insertBefore(newTextNode, this.cursorElement);
             }
 
             this.currentIndex++;
@@ -99,6 +99,6 @@ class TypeWriter {
         this.stop();
         this.currentIndex = 0;
         this.isComplete = false;
-        this.element.html('');
+        this.element.replaceChildren();
     }
 }

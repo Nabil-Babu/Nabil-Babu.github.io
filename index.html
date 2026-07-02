@@ -1,17 +1,75 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabil Babu — Game Programmer</title>
+    <meta name="description" content="Nabil Babu is a game programmer in the Toronto area, making indie games professionally since 2021.">
     <link rel="stylesheet" href="style.css">
-    <script src="libs/p5.min.js"></script>
-    <script src="libs/p5.sound.min.js"></script>
-    <script src="libs/p5ParticleSystem/particle.js"></script>
-    <script src="libs/p5ParticleSystem/particleEmitter.js"></script>
-    <script src="libs/TensorFlowField.js"></script>
-    <script src="libs/typewriter.js"></script>
-    <script src="main.js"></script>
-  </head> 
+    <script src="libs/p5.min.js" defer></script>
+    <script src="libs/p5ParticleSystem/particle.js" defer></script>
+    <script src="libs/p5ParticleSystem/particleEmitter.js" defer></script>
+    <script src="libs/TensorFlowField.js" defer></script>
+    <script src="libs/typewriter.js" defer></script>
+    <script src="main.js" defer></script>
+    <script src="site.js" defer></script>
+  </head>
   <body>
+    <div id="canvas-container"></div>
+    <main class="container">
+      <section class="defaultCard">
+        <div class="profilePic">
+          <img src="imgs/me.jpg" alt="Nabil Babu">
+        </div>
+        <div class="msgContainer">
+          Name: Nabil Babu<br>
+          Occupation: Game Programmer<br>
+          Favorite Game: Metal Gear Solid 3<br>
+          Likes: Movies,<br>
+          Magic:The Gathering,<br>
+          Sci-Fi Books and Seafood
+        </div>
+      </section>
+      <section class="defaultCard">
+        <div class="introContainer">
+          <h1 id="intro-title" class="titleContainer"></h1>
+          <div class="msgContainer">
+            I'm a game programmer living in the Toronto area. I love making
+            games and I've been doing it professionally since 2021. I've spent
+            most of my time lending my skills to the indie scene exploring
+            different game genres, technologies and ideas. Lets make cool games!
+          </div>
+        </div>
+      </section>
+      <section class="defaultCard">
+        <h2 id="socials-title" class="titleContainer"></h2>
+        <div class="logoContainer">
+          <a href="https://www.linkedin.com/in/nabil-babu/" target="_blank" rel="noopener noreferrer">
+            <div class="socialLogo"><img src="imgs/linkedin.png" alt="LinkedIn"></div>
+          </a>
+          <a href="https://github.com/Nabil-Babu" target="_blank" rel="noopener noreferrer">
+            <div class="socialLogo"><img src="imgs/github.png" alt="GitHub"></div>
+          </a>
+          <a href="https://bsky.app/profile/nabilbabu.bsky.social" target="_blank" rel="noopener noreferrer">
+            <div class="socialLogo"><img src="imgs/Bluesky.png" alt="Bluesky"></div>
+          </a>
+        </div>
+      </section>
+      <section class="defaultCard">
+        <h2 id="projects-title" class="titleContainer"></h2>
+        <div class="projectImgContainer">
+          <a href="https://store.steampowered.com/app/3238240/Scaravan_66/" target="_blank" rel="noopener noreferrer">
+            <div class="projectBanner"><img src="imgs/Scaravan66.png" alt="Scaravan 66 on Steam"></div>
+          </a>
+          <a href="https://store.steampowered.com/app/2828540/RollerGirl/" target="_blank" rel="noopener noreferrer">
+            <div class="projectBanner"><img src="imgs/RollerGirl.png" alt="RollerGirl on Steam"></div>
+          </a>
+          <a href="https://store.steampowered.com/app/2222920/The_Cloud_Bazaar/" target="_blank" rel="noopener noreferrer">
+            <div class="projectBanner"><img src="imgs/CloudBazaar.png" alt="The Cloud Bazaar on Steam"></div>
+          </a>
+        </div>
+      </section>
+      <div id="quote" class="quotesContainer"></div>
+    </main>
   </body>
 </html>

@@ -52,9 +52,21 @@ body {
     background-color: var(--primary-dark);
     min-height: 100vh;
     overflow-x: hidden;
+    display: grid;
 }
 
 /* CSS Classes */
+
+/* Fixed full-viewport layer holding the p5 canvas, behind all content */
+#canvas-container {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+#canvas-container canvas {
+    display: block;
+}
 
 .socialLogo > img
 {
@@ -96,6 +108,8 @@ body {
     justify-content: center;
     max-width: 50%;
     gap: var(--space--universal);
+    /* Safe centering: centered when it fits the viewport, scrolls from the top when it doesn't */
+    margin: auto;
 }
 
 .defaultCard
@@ -131,6 +145,9 @@ body {
     color: var(--primary-color);
     font-family: 'Tenor Sans', sans-serif;
     font-size:xx-large;
+    /* Neutralize h1/h2 browser defaults so headings render like the original divs */
+    margin: 0;
+    font-weight: normal;
     white-space: nowrap;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.3s;
     animation-fill-mode: forwards;
@@ -145,7 +162,6 @@ body {
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
-    white-space: pre-line;
 }
 
 .logoContainer
@@ -189,6 +205,11 @@ body {
 {
     color: rgb(16, 216, 16);
     font-size: x-large;
+    /* Keep the debug readout out of the page layout */
+    position: fixed;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    margin: 0;
 }
 
 
@@ -201,7 +222,6 @@ body {
 
 @media all and (max-width: 768px) {
     .container {
-        position: static !important;
         max-width: 90%;
         margin: 1rem auto;
     }
