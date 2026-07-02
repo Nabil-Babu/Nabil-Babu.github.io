@@ -16,7 +16,6 @@ let particleEmitter;
 // Tensor Flow Field
 let tensorFlowField;
 
-// DEBUG
 let debug = false;
 let framerate;
 
