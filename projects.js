@@ -53,9 +53,7 @@ function hideElement(el) {
     el.inert = true;
     // The project-detail wrapper has no entrance animation of its own, so reverse
     // its cards' animations instead. Every other element animates itself.
-    const targets = el.id === "project-detail-view"
-        ? [...el.querySelectorAll(":scope > .defaultCard")]
-        : [el];
+    const targets = el.id === "project-detail-view" ? [...el.querySelectorAll(":scope > .defaultCard")] : [el];
     const anims = targets.flatMap(target => target.getAnimations());
     anims.forEach(anim => anim.reverse());
     return Promise.all(anims.map(anim => anim.finished)).then(() => {
@@ -110,6 +108,10 @@ document.addEventListener("click", (event) => {
         const project = findProjectById(id);
         if (!project) return;
         event.preventDefault();
+        // Consider history.replaceState(state, title, url) as an alternative: same
+        // signature as pushState, but it OVERWRITES the current history entry instead
+        // of adding a new one — useful when you want to update the URL without
+        // creating a new Back step (e.g. redirects or in-place state tweaks).
         history.pushState(null, "", projectLink.getAttribute("href"));
         transitionToProject(project);
         return;
