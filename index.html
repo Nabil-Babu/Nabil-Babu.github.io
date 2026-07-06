@@ -13,11 +13,13 @@
     <script src="libs/typewriter.js" defer></script>
     <script src="main.js" defer></script>
     <script src="site.js" defer></script>
+    <script src="projects-data.js" defer></script>
+    <script src="projects.js" defer></script>
   </head>
   <body>
     <div id="canvas-container"></div>
     <main class="container">
-      <section class="defaultCard">
+      <section class="defaultCard home-view">
         <div class="profilePic">
           <img src="imgs/me.jpg" alt="Nabil Babu">
         </div>
@@ -30,7 +32,7 @@
           Sci-Fi Books and Seafood
         </div>
       </section>
-      <section class="defaultCard">
+      <section class="defaultCard home-view">
         <div class="introContainer">
           <h1 id="intro-title" class="titleContainer"></h1>
           <div class="msgContainer">
@@ -41,7 +43,7 @@
           </div>
         </div>
       </section>
-      <section class="defaultCard">
+      <section class="defaultCard home-view">
         <h2 id="socials-title" class="titleContainer"></h2>
         <div class="logoContainer">
           <a href="https://www.linkedin.com/in/nabil-babu/" target="_blank" rel="noopener noreferrer">
@@ -55,21 +57,22 @@
           </a>
         </div>
       </section>
-      <section class="defaultCard">
+      <section class="defaultCard home-view">
         <h2 id="projects-title" class="titleContainer"></h2>
         <div class="projectImgContainer">
-          <a href="https://store.steampowered.com/app/3238240/Scaravan_66/" target="_blank" rel="noopener noreferrer">
-            <div class="projectBanner"><img src="imgs/Scaravan66.png" alt="Scaravan 66 on Steam"></div>
+          <a href="index.html?project=scaravan66">
+            <div class="projectBanner"><img src="imgs/Scaravan66.png" alt="Scaravan 66"></div>
           </a>
-          <a href="https://store.steampowered.com/app/2828540/RollerGirl/" target="_blank" rel="noopener noreferrer">
-            <div class="projectBanner"><img src="imgs/RollerGirl.png" alt="RollerGirl on Steam"></div>
+          <a href="index.html?project=rollergirl">
+            <div class="projectBanner"><img src="imgs/RollerGirl.png" alt="RollerGirl"></div>
           </a>
-          <a href="https://store.steampowered.com/app/2222920/The_Cloud_Bazaar/" target="_blank" rel="noopener noreferrer">
-            <div class="projectBanner"><img src="imgs/CloudBazaar.png" alt="The Cloud Bazaar on Steam"></div>
+          <a href="index.html?project=cloudbazaar">
+            <div class="projectBanner"><img src="imgs/CloudBazaar.png" alt="The Cloud Bazaar"></div>
           </a>
         </div>
       </section>
-      <div id="quote" class="quotesContainer"></div>
+      <div id="quote" class="quotesContainer home-view"></div>
+      <section id="project-detail-view" class="defaultCard layout-collapsed" inert></section>
     </main>
   </body>
 </html>
