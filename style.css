@@ -100,6 +100,15 @@ body {
     border-radius: var(--radius-universal);
 }
 
+#gallery > img
+{
+    max-width: 400px;
+    border-radius: var(--radius-universal);
+    opacity: 0%;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
+    animation-fill-mode: forwards;
+}
+
 .container
 {
     display: flex;
@@ -153,6 +162,12 @@ body {
     animation-fill-mode: forwards;
 }
 
+.titleContainer.genre
+{
+    font-size: medium;
+    font-weight: normal;
+}
+
 .msgContainer
 {
     font-family: 'Quicksand', sans-serif;
@@ -203,17 +218,39 @@ body {
 
 #project-detail-view
 {
-    max-width: 500px;
-    margin: 0 auto;
-    text-align: left;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--space--universal);
+    margin: auto;
 }
+
+#project-detail-view > #description
+{
+    max-width: 360px;
+}
+
+#project-detail-view > #contributions
+{
+    min-height: 150px;
+    width: 100%;
+}
+
+#gallery {
+    flex-flow: row wrap;
+}
+
 
 /* Fully removes an element from layout once its hide animation has finished.
    Removing this class restores display, which makes the browser recreate the
    CSS entrance animation from scratch and play it forward automatically. */
 .layout-collapsed
 {
-    display: none;
+    /* !important so it still wins over the #project-detail-view id rule's
+       `display: flex`, which otherwise out-specifies this class and leaves the
+       detail view visible while collapsed. */
+    display: none !important;
 }
 
 .projectDetailBanner > img
@@ -264,9 +301,12 @@ body {
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     text-decoration: none;
+    opacity: 0;
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-md);
     transition: background-color var(--duration-fast) var(--ease-out);
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
+    animation-fill-mode: forwards;
 }
 
 .storeLink:hover

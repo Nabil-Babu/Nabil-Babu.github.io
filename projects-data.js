@@ -6,25 +6,46 @@ const projectsData = [
     {
         id: "scaravan66",
         title: "Scaravan 66",
+        genre: "3D Rogue-Like Car Combat",
         description: "Put the pedal to the metal and outgun the Devil in this high-octane car combat roguelike. Get that extra bit of horsepower from allies you meet on the road to take on the fiends of the underworld as you defy fate and anyone who stands in your way.",
-        techStack: ["Unreal Engine 5", "C++"],
+        techStack: ["Unreal Engine 5", "C++", "Blueprints"],
+        contributions: [
+            "Created AI systems and behaviors using Gameplay Ability System, Behavior Trees, and Utility AI",
+            "Designed sensors and AI for anticipating and responding to vehicular collisions",
+            "Designed physically simulated chain systems to realistically, and efficiently, constrain vehicles at high speeds"
+        ],
+        screenshots: ["imgs/ss/SC1.jpg","imgs/ss/SC2.jpg","imgs/ss/SC3.jpg"],
         bannerImage: "imgs/Scaravan66.png",
         storeLink: "https://store.steampowered.com/app/3238240/Scaravan_66/"
     },
     {
         id: "rollergirl",
         title: "RollerGirl",
+        genre: "3D Cozy Exploration Adventure game",
         description: "Choose your own vibe in this slice-of-life adventure. While exploring a small town on rollerblades, use your MP3 player to set the mood for your summer. Run errands for quirky neighbours, get entangled in local drama and stumble into a teenage romance.",
         techStack: ["Unity Engine", "C#"],
+        contributions: [
+            "Implemented custom C# API for MP3 player system to be used in the UI",
+            "Developed first MVP for character controller, player controller, camera controller",
+            "Integrated popular Unity Asset packages, including Dialogue System for Unity"
+        ],
+        screenshots: ["imgs/ss/RG1.jpg","imgs/ss/RG2.jpg","imgs/ss/RG3.jpg"],
         bannerImage: "imgs/RollerGirl.png",
         storeLink: "https://store.steampowered.com/app/2828540/RollerGirl/"
     },
     {
         id: "cloudbazaar",
         title: "The Cloud Bazaar",
+        genre: "Side Scrolling Infinite Runner",
         description: "The Cloud Bazaar is an interactive therapeutic game designed with and for players with pediatric spinal muscular atrophy (SMA). Players are on a mission to stop the floating city from falling into the ocean. The sky pirates are threatening to steal the city’s only way to stay afloat.",
         techStack: ["Unity Engine", "C#"],
+        contributions: [
+            "Implementing machine learning model for pose detection using webcam frame data.",
+            "Translated exercises into gameplay input using a custom made C# webcam pose detection system",
+            "Implemented user authorization and leader board system using PlayFab"
+        ],
         bannerImage: "imgs/CloudBazaar.png",
+        screenshots: ["imgs/ss/CB1.jpg","imgs/ss/CB2.jpg","imgs/ss/CB3.jpg"],
         storeLink: "https://store.steampowered.com/app/2222920/The_Cloud_Bazaar/"
     }
 ];

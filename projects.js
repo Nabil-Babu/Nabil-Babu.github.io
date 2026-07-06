@@ -11,25 +11,52 @@ function findProjectById(id) {
 function renderProjectDetail(project) {
     const view = document.getElementById("project-detail-view");
     view.innerHTML = `
-        <a href="index.html" class="backLink">&larr; Back</a>
-        <h2 class="titleContainer">${project.title}</h2>
-        <div class="projectDetailBanner"><img src="${project.bannerImage}" alt="${project.title}"></div>
-        <div class="msgContainer">${project.description}</div>
-        <div class="techStackContainer">
-            <h3 class="titleContainer">Tech Stack</h3>
+        <section id="main" class="defaultCard">
+            <a href="index.html" class="backLink">&larr; Back</a>
+            <h2 class="titleContainer">${project.title}</h2>
+            <div class="projectDetailBanner"><img src="${project.bannerImage}" alt="${project.title}"></div>
+            <div class="techStackContainer defaultCard">
+                <h3 class="titleContainer">Tech...</h3>
+                <ul class="techStackList">
+                    ${project.techStack.map(item => `<li>${item}</li>`).join("")}
+                </ul>
+            </div>
+        </section>
+        <section id="description" class="defaultCard">
+            <h2 class="titleContainer">Description...</h2>
+            <h2 class="titleContainer genre">${project.genre}</h2>
+            <div class="msgContainer">${project.description}</div>
+        </section>
+        <section id="socials" class="defaultCard">
+            <h2 class="titleContainer">Links...</h2>
+            <a href="${project.storeLink}" target="_blank" rel="noopener noreferrer" class="storeLink">View on Steam</a>
+        </section>
+        <section id="contributions" class="defaultCard">
+            <h2 class="titleContainer">Contributions...</h2>
             <ul class="techStackList">
-                ${project.techStack.map(item => `<li>${item}</li>`).join("")}
+                ${project.contributions.map(item => `<li>${item}</li>`).join("")}
             </ul>
-        </div>
-        <a href="${project.storeLink}" target="_blank" rel="noopener noreferrer" class="storeLink">View on Steam</a>
+        </section>
+        <section class="defaultCard">
+        <h2 class="titleContainer">Gallery...</h2>
+            <div id="gallery">${project.screenshots.map(imglnk => `<img src="${imglnk}" alt="${project.title}">`).join(" ")}</div>
+        </section>
     `;
 }
 
-// Reverses whatever animations are currently on the element (running or
-// already finished), then removes it from layout once they finish reversing.
+// Reverses the card-level entrance animation(s), then removes the element from
+// layout once they finish reversing. We only touch the card's own slideInFromTop
+// (the element itself for home sections, or its direct .defaultCard children for
+// the project-detail wrapper) — the cards' delayed inner animations fade out with
+// their card rather than being reversed individually.
 function hideElement(el) {
     el.inert = true;
-    const anims = el.getAnimations();
+    // The project-detail wrapper has no entrance animation of its own, so reverse
+    // its cards' animations instead. Every other element animates itself.
+    const targets = el.id === "project-detail-view"
+        ? [...el.querySelectorAll(":scope > .defaultCard")]
+        : [el];
+    const anims = targets.flatMap(target => target.getAnimations());
     anims.forEach(anim => anim.reverse());
     return Promise.all(anims.map(anim => anim.finished)).then(() => {
         el.classList.add("layout-collapsed");
@@ -55,7 +82,6 @@ function transitionToProject(project) {
             showElement(document.getElementById("project-detail-view"));
         });
     }
-    // If a project detail view is already showing, the innerHTML swap above is enough.
 }
 
 function transitionToHome() {
