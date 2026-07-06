@@ -100,6 +100,15 @@ body {
     border-radius: var(--radius-universal);
 }
 
+#gallery > img
+{
+    max-width: 400px;
+    border-radius: var(--radius-universal);
+    opacity: 0%;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
+    animation-fill-mode: forwards;
+}
+
 .container
 {
     display: flex;
@@ -123,11 +132,11 @@ body {
     justify-content: center;   /* Vertically center contents */                                                                                                                                                                   
     align-items: center;
     opacity: 0;
-    scale: 0.1;
+    scale: 1;
     border-radius: var(--radius-universal);
     animation: 
-        slideInFromTop var(--duration-slow) var(--ease-out),
-        scaleUp var(--duration-fast) linear 1;
+        slideInFromTop var(--duration-slow) var(--ease-out);
+        /* scaleUp var(--duration-fast) linear 1; */
     animation-fill-mode: forwards;
     gap: var(--space--universal);
 }
@@ -151,6 +160,12 @@ body {
     white-space: nowrap;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.3s;
     animation-fill-mode: forwards;
+}
+
+.titleContainer.genre
+{
+    font-size: medium;
+    font-weight: normal;
 }
 
 .msgContainer
@@ -199,6 +214,104 @@ body {
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
+}
+
+#project-detail-view
+{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--space--universal);
+    margin: auto;
+}
+
+#project-detail-view > #description
+{
+    max-width: 360px;
+}
+
+#project-detail-view > #contributions
+{
+    min-height: 150px;
+    width: 100%;
+}
+
+#gallery {
+    flex-flow: row wrap;
+}
+
+
+/* Fully removes an element from layout once its hide animation has finished.
+   Removing this class restores display, which makes the browser recreate the
+   CSS entrance animation from scratch and play it forward automatically. */
+.layout-collapsed
+{
+    /* !important so it still wins over the #project-detail-view id rule's
+       `display: flex`, which otherwise out-specifies this class and leaves the
+       detail view visible while collapsed. */
+    display: none !important;
+}
+
+.projectDetailBanner > img
+{
+    max-width: 300px;
+    border-radius: var(--radius-universal);
+    opacity: 0%;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
+    animation-fill-mode: forwards;
+}
+
+.backLink
+{
+    align-self: flex-start;
+    color: var(--primary-dark);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.backLink:hover
+{
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.techStackContainer
+{
+    width: 100%;
+}
+
+.techStackList
+{
+    margin: 0;
+    padding-left: var(--space-lg);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    opacity: 0;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
+    animation-fill-mode: forwards;
+}
+
+.storeLink
+{
+    color: var(--primary-dark);
+    background-color: var(--primary-color);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    opacity: 0;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    transition: background-color var(--duration-fast) var(--ease-out);
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
+    animation-fill-mode: forwards;
+}
+
+.storeLink:hover
+{
+    background-color: var(--accent-color);
 }
 
 .frameRate
