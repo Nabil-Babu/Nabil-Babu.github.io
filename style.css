@@ -55,6 +55,19 @@ body {
     display: grid;
 }
 
+footer {
+    display: flex;
+    align-items: end;    
+    justify-content: end;
+    flex-direction: column ;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: small;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+}
+
 /* CSS ID's */
 
 /* Fixed full-viewport layer holding the p5 canvas, behind all content */
