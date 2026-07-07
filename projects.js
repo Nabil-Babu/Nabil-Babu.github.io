@@ -17,7 +17,7 @@ function renderProjectDetail(project) {
             <div class="projectDetailBanner"><img src="${project.bannerImage}" alt="${project.title}"></div>
             <div class="techStackContainer defaultCard">
                 <h3 class="titleContainer">Tech...</h3>
-                <ul class="techStackList">
+                <ul class="stackList">
                     ${project.techStack.map(item => `<li>${item}</li>`).join("")}
                 </ul>
             </div>
@@ -33,7 +33,7 @@ function renderProjectDetail(project) {
         </section>
         <section id="contributions" class="defaultCard">
             <h2 class="titleContainer">Contributions...</h2>
-            <ul class="techStackList">
+            <ul class="stackList">
                 ${project.contributions.map(item => `<li>${item}</li>`).join("")}
             </ul>
         </section>
