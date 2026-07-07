@@ -95,6 +95,7 @@ body {
 #project-detail-view > #contributions
 {
     min-height: 150px;
+    font-size:large;
 }
 
 #gallery {
@@ -306,6 +307,11 @@ body {
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
+}
+
+.stackList > li 
+{
+    margin-bottom: 8px;
 }
 
 .storeLink
