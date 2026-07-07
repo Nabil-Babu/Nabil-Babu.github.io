@@ -47,5 +47,19 @@ const projectsData = [
         bannerImage: "imgs/CloudBazaar.png",
         screenshots: ["imgs/ss/CB1.jpg","imgs/ss/CB2.jpg","imgs/ss/CB3.jpg"],
         storeLink: "https://store.steampowered.com/app/2222920/The_Cloud_Bazaar/"
+    },
+    {
+        id: "hillagency",
+        title: "Hill Agency: PURITYdecay",
+        genre: "2.5D Side scrolling detective mystery",
+        description: "Murdered sisters, mind altering drugs and flying cities, to a case that goes way further than the banks of this one detective's little neighbourhood in this Indigenous cybernoir detective narrative adventure set in a post-post-apocalyptical future.",
+        techStack: ["Unreal Engine", "C++", "Blueprints", "Articy"],
+        contributions: [
+            "Created custom C++ data structures and Blueprint tools for narrative design work flow",
+            "Implemented a detective board system using narrative flags to add and remove items to the board"
+        ],
+        bannerImage: "imgs/HillAgency.png",
+        screenshots: ["imgs/ss/HA1.jpg","imgs/ss/HA2.jpg","imgs/ss/HA3.jpg"],
+        storeLink: "https://store.steampowered.com/app/1358370/Hill_Agency_PURITYdecay/"
     }
 ];

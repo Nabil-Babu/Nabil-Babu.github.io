@@ -55,7 +55,7 @@ body {
     display: grid;
 }
 
-/* CSS Classes */
+/* CSS ID's */
 
 /* Fixed full-viewport layer holding the p5 canvas, behind all content */
 #canvas-container {
@@ -68,46 +68,44 @@ body {
     display: block;
 }
 
-.socialLogo > img
-{
-    max-width: 65px;
-    opacity: 100%;
-}
-
-.socialLogo:hover
-{
-    animation: spin 2.0s ease-in-out infinite;
-}
-
-.projectBanner:hover
-{
-    animation: float 2.0s ease-in-out infinite;
-}
-
-.profilePic > img
-{
-    max-width: 150px;
-    opacity: 0%;
-    border-radius: var(--radius-universal);
-    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
-    animation-fill-mode: forwards;
-}
-
-.projectBanner > img
-{
-    opacity: 100%;
-    max-width: 250px;
-    border-radius: var(--radius-universal);
-}
-
 #gallery > img
 {
-    max-width: 400px;
+    max-width: 100%;
     border-radius: var(--radius-universal);
     opacity: 0%;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
     animation-fill-mode: forwards;
 }
+
+#project-detail-view
+{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--space--universal);
+    margin: auto;
+}
+
+#project-detail-view > #description
+{
+    max-width: 400px;
+}
+
+#project-detail-view > #contributions
+{
+    min-height: 150px;
+}
+
+#gallery {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;                                                                                                                                                                
+    align-items: center;
+    gap: var(--space--universal);
+}
+
+/* CSS Classes */
 
 .container
 {
@@ -141,6 +139,49 @@ body {
     gap: var(--space--universal);
 }
 
+.socialLogo:hover
+{
+    animation: spin 2.0s ease-in-out infinite;
+}
+
+.projectBanner:hover
+{
+    animation: float 2.0s ease-in-out infinite;
+}
+
+.socialLogo > img
+{
+    max-width: 65px;
+    opacity: 100%;
+}
+
+.profilePic > img
+{
+    max-width: 150px;
+    opacity: 0%;
+    border-radius: var(--radius-universal);
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
+    animation-fill-mode: forwards;
+}
+
+.projectBanner > img
+{
+    opacity: 100%;
+    max-width: 250px;
+    border-radius: var(--radius-universal);
+
+}
+
+.projectDetailBanner > img
+{
+    max-width: min(400px, 100%);
+    border-radius: var(--radius-universal);
+    opacity: 0%;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
+    animation-fill-mode: forwards;
+}
+
+
 .introContainer
 {
     display: flex;
@@ -166,6 +207,12 @@ body {
 {
     font-size: medium;
     font-weight: normal;
+    white-space: normal;
+}
+
+.highlight
+{
+    color: var(--primary-color);
 }
 
 .msgContainer
@@ -216,34 +263,6 @@ body {
     animation-fill-mode: forwards;
 }
 
-#project-detail-view
-{
-    display: flex;
-    flex-flow: row wrap;
-    align-items: stretch;
-    justify-content: center;
-    gap: var(--space--universal);
-    margin: auto;
-}
-
-#project-detail-view > #description
-{
-    max-width: 400px;
-}
-
-#project-detail-view > #contributions
-{
-    min-height: 150px;
-}
-
-#gallery {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;                                                                                                                                                                
-    align-items: center;
-    gap: var(--space--universal);
-}
-
 
 /* Fully removes an element from layout once its hide animation has finished.
    Removing this class restores display, which makes the browser recreate the
@@ -256,14 +275,6 @@ body {
     display: none !important;
 }
 
-.projectDetailBanner > img
-{
-    max-width: 300px;
-    border-radius: var(--radius-universal);
-    opacity: 0%;
-    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
-    animation-fill-mode: forwards;
-}
 
 .backLink
 {
@@ -314,7 +325,7 @@ body {
 
 .storeLink:hover
 {
-    background-color: var(--accent-color);
+    background-color: white;
 }
 
 .frameRate
@@ -328,6 +339,13 @@ body {
     margin: 0;
 }
 
+/* Blinking cursor element */
+.typing-cursor {
+    color: var(--primary-color);
+    font-weight: normal;
+    animation: cursorBlink 1s step-end infinite;
+    margin-left: 2px;
+}
 
 /* Media Queries */
 @media all and (max-width: 1200px) {
@@ -348,7 +366,6 @@ body {
         max-width: 95%;
     }
 }
-
 
 /* Keyframe animations */
 @keyframes slideInFromTop {
@@ -407,14 +424,6 @@ body {
     to {
         scale: 1.0;
     }
-}
-
-/* Blinking cursor element */
-.typing-cursor {
-    color: var(--primary-color);
-    font-weight: normal;
-    animation: cursorBlink 1s step-end infinite;
-    margin-left: 2px;
 }
 
 /* Cursor blink animation (0.5s visible, 0.5s hidden) */
