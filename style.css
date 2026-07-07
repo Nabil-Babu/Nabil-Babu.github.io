@@ -228,17 +228,20 @@ body {
 
 #project-detail-view > #description
 {
-    max-width: 360px;
+    max-width: 400px;
 }
 
 #project-detail-view > #contributions
 {
     min-height: 150px;
-    width: 100%;
 }
 
 #gallery {
+    display: flex;
     flex-flow: row wrap;
+    justify-content: center;                                                                                                                                                                
+    align-items: center;
+    gap: var(--space--universal);
 }
 
 
