@@ -14,8 +14,8 @@ const projectsData = [
             "Designed a physically simulated chain system to realistically, and efficiently, constrain vehicles at high speeds. The chain system has interactions throughout the length of its meshes until despawed.",
             "Implemented a rudimentary vehicle destruction system that was able to dynamically decide what parts of a vehicle are launched as debris during explosions and can be interacted with by other actors. This created satisfactory vehicle collisions and death sequences."
         ],
-        screenshots: ["imgs/ss/SC1.jpg","imgs/ss/SC2.jpg","imgs/ss/SC3.jpg"],
-        bannerImage: "imgs/Scaravan66.png",
+        screenshots: ["assets/images/screenshots/SC1.jpg","assets/images/screenshots/SC2.jpg","assets/images/screenshots/SC3.jpg"],
+        bannerImage: "assets/images/projects/Scaravan66.png",
         storeLink: "https://store.steampowered.com/app/3238240/Scaravan_66/"
     },
     {
@@ -29,8 +29,8 @@ const projectsData = [
             "Developed the first character controller, player controller, and camera controller for the purposes of grant applications and proof of concept testing.",
             "Integrated popular Unity Asset 'Dialogue System for Unity' to create a dialogue based, quest system."
         ],
-        screenshots: ["imgs/ss/RG1.jpg","imgs/ss/RG2.jpg","imgs/ss/RG3.jpg"],
-        bannerImage: "imgs/RollerGirl.png",
+        screenshots: ["assets/images/screenshots/RG1.jpg","assets/images/screenshots/RG2.jpg","assets/images/screenshots/RG3.jpg"],
+        bannerImage: "assets/images/projects/RollerGirl.png",
         storeLink: "https://store.steampowered.com/app/2828540/RollerGirl/"
     },
     {
@@ -44,8 +44,8 @@ const projectsData = [
             "Translated exercises into gameplay input using a custom made C# webcam pose detection system. The systems API allowed for the user to detect when an exercise had been performed, and how fast. These values were used to drive gameplay, essentially allowing the user to play the game with only a webcam and no IR sensors.",
             "Implemented user authorization and leader board system using PlayFab. Users were authenticated using emails and passwords. Verifications were done through PlayFabs dashboard interface."
         ],
-        bannerImage: "imgs/CloudBazaar.png",
-        screenshots: ["imgs/ss/CB1.jpg","imgs/ss/CB2.jpg","imgs/ss/CB3.jpg"],
+        bannerImage: "assets/images/projects/CloudBazaar.png",
+        screenshots: ["assets/images/screenshots/CB1.jpg","assets/images/screenshots/CB2.jpg","assets/images/screenshots/CB3.jpg"],
         storeLink: "https://store.steampowered.com/app/2222920/The_Cloud_Bazaar/"
     },
     {
@@ -58,8 +58,8 @@ const projectsData = [
             "Created custom C++ data structures and Blueprint tools for narrative design work flow.",
             "Implemented a detective board system using narrative flags to add and remove items to the board."
         ],
-        bannerImage: "imgs/HillAgency.png",
-        screenshots: ["imgs/ss/HA1.jpg","imgs/ss/HA2.jpg","imgs/ss/HA3.jpg"],
+        bannerImage: "assets/images/projects/HillAgency.png",
+        screenshots: ["assets/images/screenshots/HA1.jpg","assets/images/screenshots/HA2.jpg","assets/images/screenshots/HA3.jpg"],
         storeLink: "https://store.steampowered.com/app/1358370/Hill_Agency_PURITYdecay/"
     }
 ];

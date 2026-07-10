@@ -1,7 +1,7 @@
 "use strict";
 
 // Random quote on load (quote is decorative, so a failed fetch just leaves it empty)
-fetch("resources/quotes.txt")
+fetch("assets/data/quotes.txt")
     .then(response => response.text())
     .then(text => {
         let quotes = text.split("\n").map(line => line.trim()).filter(line => line.length > 0);
