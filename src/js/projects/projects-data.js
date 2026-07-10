@@ -11,7 +11,7 @@ const projectsData = [
         contributions: [
             "Created A.I systems that decided what behaviors and abilities will be activated by NPC's based on a variety of data driven factors such as player actions, ability cooldowns, number of allies/enemies and etc. These systems were built using Unreal's Gameplay Ability System(GAS), Behavior Trees and Utility A.I.",
             "Implemented a custom autonomous vehicle sensor system using C++ and actor components to allow vehicle actors to detect potential collisions and avoid them without expensive distance calls on each potential collision actor. The sensors could be customized to adjust reaction time, reaction strength, and etc to create unique actor traits.",
-            "Designed a physically simulated chain system to realistically, and efficiently, constrain vehicles at high speeds. The chain system has interactions throughout the length of its meshes until despawed.",
+            "Designed a physically simulated chain system to realistically, and efficiently, constrain vehicles at high speeds. The chain system has interactions throughout the length of its meshes until despawned.",
             "Implemented a rudimentary vehicle destruction system that was able to dynamically decide what parts of a vehicle are launched as debris during explosions and can be interacted with by other actors. This created satisfactory vehicle collisions and death sequences."
         ],
         screenshots: ["assets/images/screenshots/SC1.jpg","assets/images/screenshots/SC2.jpg","assets/images/screenshots/SC3.jpg"],
