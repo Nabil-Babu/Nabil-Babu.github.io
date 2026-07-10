@@ -61,7 +61,7 @@ I wanted to keep the site small and grow it little by little as learn more about
 web development. This also makes it easy to update and add more information whenever
 I want. I can also port it to another hosting location or even self-host it
 very easily.
----
+
 
 ## Running it locally(if you want...)
 If you have Python
