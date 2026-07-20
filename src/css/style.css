@@ -213,20 +213,9 @@ footer {
     gap: var(--space--universal);
 }
 
-.socialLogo:hover
-{
-    animation: spin 2.0s ease-in-out infinite;
-}
-
 .projectBanner:hover
 {
     animation: float 2.0s ease-in-out infinite;
-}
-
-.socialLogo > img
-{
-    max-width: 65px;
-    opacity: 100%;
 }
 
 .profilePic > img
@@ -341,17 +330,6 @@ footer {
     animation-fill-mode: forwards;
 }
 
-.logoContainer
-{
-    display: flex;
-    flex-flow: row wrap;
-    gap: var(--space--universal);
-    min-width: 25%;
-    opacity: 0;
-    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
-    animation-fill-mode: forwards;
-}
-
 .projectImgContainer
 {
     display: flex;
@@ -367,15 +345,107 @@ footer {
 
 .quotesContainer
 {
-    color: var(--primary-color);
+    margin: 0;
+    max-width: 600px;
+    color: var(--text-light);
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;                                                                                                                                                                
+    justify-content: center;
     align-items: center;
-    font-size: xx-large;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.25rem;
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
+}
+
+/* Contact card (// 004): quote, social icon buttons, CTA — a touch more air
+   between the three groups than the default card-body gap. */
+.contactBody
+{
+    gap: var(--space-lg);
+}
+
+.socialRow
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    opacity: 0;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.6s;
+    animation-fill-mode: forwards;
+}
+
+.iconBtn
+{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--text-light);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    transition:
+        color var(--duration-fast) var(--ease-out),
+        border-color var(--duration-fast) var(--ease-out),
+        transform var(--duration-fast) var(--ease-out);
+}
+
+.iconBtn:hover
+{
+    color: var(--primary-light);
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.iconBtn svg
+{
+    display: block;
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+.ctaButton
+{
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--primary-dark);
+    background-color: var(--primary-color);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 1.05rem;
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-md);
+    opacity: 0;
+    transition:
+        background-color var(--duration-fast) var(--ease-out),
+        transform var(--duration-fast) var(--ease-out);
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
+    animation-fill-mode: forwards;
+}
+
+.ctaButton:hover
+{
+    background-color: #fff;
+    transform: translateY(-2px);
+}
+
+.ctaButton:hover .ctaArrow
+{
+    transform: translateX(3px);
+}
+
+.ctaArrow
+{
+    transition: transform var(--duration-fast) var(--ease-out);
 }
 
 
