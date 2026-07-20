@@ -9,6 +9,11 @@
     --primary-dark: #00060e;
     --secondary-color: #9a9f17;
     --accent-color: #54c1e6;
+
+    /* Dossier redesign surfaces */
+    --card-bg: #131f33;                       /* Navy card body */
+    --card-border: rgba(57, 196, 182, 0.45);  /* Faint teal outline */
+    --text-light: #e7edf5;                    /* Body text on navy */
             
     /* Spacing system */
     --space-xs: 0.25rem;
@@ -138,8 +143,9 @@ footer {
 
 .defaultCard
 {
-    color: var(--primary-dark);
-    background-color: var(--primary-light);
+    color: var(--text-light);
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
     padding: var(--space--universal);
     flex-grow: 1;
     display: flex;                                                                                                                                                                                                                
@@ -153,6 +159,44 @@ footer {
         slideInFromTop var(--duration-slow) var(--ease-out);
         /* scaleUp var(--duration-fast) linear 1; */
     animation-fill-mode: forwards;
+    gap: var(--space--universal);
+}
+
+/* Dossier header bar: teal strip with "OPERATIVE FILE // 00X" and a right label.
+   Markup wired up in Phase 2; styles defined ahead of time. */
+.card-header
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    padding: var(--space-sm) var(--space-md);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.file-no,
+.file-status
+{
+    font-size: 0.85rem;
+}
+
+/* Inner content region below the header bar; carries the padding the card
+   itself gives up so the header can sit flush to the card edges. */
+.card-body
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--space-md);
     gap: var(--space--universal);
 }
 
@@ -296,7 +340,7 @@ footer {
 .backLink
 {
     align-self: flex-start;
-    color: var(--primary-dark);
+    color: var(--text-light);
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     text-decoration: none;
