@@ -10,29 +10,9 @@ fetch("assets/data/quotes.txt")
     })
     .catch(() => {});
 
-// Chained title typewriters: intro -> socials -> projects
-let projectTypeWriter = new TypeWriter(
-    document.getElementById("projects-title"),
-    "Projects...",
-    {
-        minDelay: 40,
-        maxDelay: 90,
-        startDelay: 800
-    }
-);
-
-let socialsTypeWriter = new TypeWriter(
-    document.getElementById("socials-title"),
-    "Socials...",
-    {
-        minDelay: 40,
-        maxDelay: 90,
-        startDelay: 800,
-        onComplete: () => projectTypeWriter.start(),
-        hideCursorOnComplete: true
-    }
-);
-
+// Intro heading types itself out on load. (Socials/Projects titles became
+// static dossier header-bar labels in the redesign, so their typewriters were
+// removed.)
 let titleTypeWriter = new TypeWriter(
     document.getElementById("intro-title"),
     "Hello, world...",
@@ -40,7 +20,6 @@ let titleTypeWriter = new TypeWriter(
         minDelay: 40,
         maxDelay: 90,
         startDelay: 800,  // Wait for slide-in (0.3s delay + 0.5s duration)
-        onComplete: () => socialsTypeWriter.start(),
         hideCursorOnComplete: true
     }
 );

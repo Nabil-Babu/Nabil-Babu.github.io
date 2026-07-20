@@ -162,8 +162,17 @@ footer {
     gap: var(--space--universal);
 }
 
-/* Dossier header bar: teal strip with "OPERATIVE FILE // 00X" and a right label.
-   Markup wired up in Phase 2; styles defined ahead of time. */
+/* Cards that use the dossier header bar give up their own padding (it moves to
+   .card-body) and clip their corners so the teal strip sits flush to the card
+   edge. Scoped with :has() so the detail-view cards, which have no header yet,
+   keep their existing padding. */
+.defaultCard:has(.card-body)
+{
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Dossier header bar: teal strip with "OPERATIVE FILE // 00X" and a right label. */
 .card-header
 {
     display: flex;
@@ -187,13 +196,17 @@ footer {
 }
 
 /* Inner content region below the header bar; carries the padding the card
-   itself gives up so the header can sit flush to the card edges. */
+   itself gives up so the header can sit flush to the card edges.
+   flex-grow fills the leftover height (cards stretch to their row's tallest
+   sibling) so the header pins to the top while the body still centers its own
+   content — without disturbing .defaultCard, which the detail view reuses. */
 .card-body
 {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
     width: 100%;
     box-sizing: border-box;
     padding: var(--space-md);
