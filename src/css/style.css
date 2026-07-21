@@ -77,6 +77,10 @@ footer {
     margin-right: 5px;
 }
 
+footer a:visited{
+    color: var(--text-light);
+}
+
 /* CSS ID's */
 
 /* Fixed full-viewport layer holding the p5 canvas, behind all content */
@@ -162,7 +166,7 @@ footer {
     flex-flow: row wrap;
     align-items: stretch;
     justify-content: center;
-    max-width: 50%;
+    max-width: min(1300px,75%);
     gap: var(--space--universal);
     /* Safe centering: centered when it fits the viewport, scrolls from the top when it doesn't */
     margin: auto;
@@ -177,14 +181,12 @@ footer {
     flex-grow: 1;
     display: flex;                                                                                                                                                                                                                
     flex-direction: column;                                                                                                                                                                                                       
-    justify-content: center;   /* Vertically center contents */                                                                                                                                                                   
+    justify-content: center;                                                                                                                                                                  
     align-items: center;
     opacity: 0;
     scale: 1;
     border-radius: var(--radius-universal);
-    animation: 
-    slideInFromTop var(--duration-slow) var(--ease-out);
-    /* scaleUp var(--duration-fast) linear 1; */
+    animation: slideInFromTop var(--duration-slow) var(--ease-out);
     animation-fill-mode: forwards;
     gap: var(--space--universal);
 }
@@ -235,7 +237,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     flex-grow: 1;
     width: 100%;
     box-sizing: border-box;
@@ -262,7 +264,7 @@ footer {
 .projectBanner > img
 {
     opacity: 100%;
-    max-width: 250px;
+    max-width: 300px;
     border-radius: var(--radius-universal); 
 }
     
@@ -294,7 +296,7 @@ footer {
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
 }
 
 .fieldList dd
@@ -303,7 +305,7 @@ footer {
     color: var(--text-light);
     font-family: 'Sora', sans-serif;
     font-weight: 400;
-    font-size: 1.15rem;
+    font-size: 1.30rem;
 }
 
 .projectDetailBanner > img
@@ -320,7 +322,7 @@ footer {
 {
     display: flex;
     flex-flow: column wrap;
-    max-width: 350px;
+    max-width: 550px;
 }
 
 .titleContainer
@@ -328,7 +330,7 @@ footer {
     opacity: 0;
     color: var(--primary-light);
     font-family: 'Sora', sans-serif;
-    font-size: x-large;
+    font-size: 1.3em;
     text-transform: uppercase;
     margin: 0;
     font-weight: 400;
@@ -369,7 +371,8 @@ footer {
     font-weight: 400;
     padding: 0px 0px 10px 0px;
     text-align: left;
-    font-size: 1.15em;
+    font-size: 1.35em;
+    line-height: 1.4em;
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
