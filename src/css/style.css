@@ -571,10 +571,15 @@ footer {
     font-size: 0.85rem;
 }
 
-.stackList
+/* Contributions list: teal en-dash bullets with a hanging indent so wrapped
+   lines align under the text, not the dash. */
+.dashList
 {
     margin: 0;
-    padding-left: var(--space-lg);
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    text-align: left;
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     opacity: 0;
@@ -582,9 +587,19 @@ footer {
     animation-fill-mode: forwards;
 }
 
-.stackList > li 
+.dashList > li
 {
-    margin-bottom: 8px;
+    position: relative;
+    padding-left: var(--space-lg);
+    margin-bottom: var(--space-sm);
+}
+
+.dashList > li::before
+{
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--primary-light);
 }
 
 .storeLink

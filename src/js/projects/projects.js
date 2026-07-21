@@ -43,7 +43,7 @@ function renderProjectDetail(project) {
                 <span class="file-status">${project.title}</span>
             </header>
             <div class="card-body">
-                <ul class="stackList">
+                <ul class="dashList">
                     ${project.contributions.map(item => `<li>${item}</li>`).join("")}
                 </ul>
             </div>
