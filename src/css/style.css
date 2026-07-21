@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400&family=Raleway&family=Tenor+Sans&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400&display=swap');
 /* Root Variables */
 
 :root {
@@ -68,8 +67,8 @@ footer {
     align-items: end;
     justify-content: end;
     flex-direction: column;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     text-align: right;
     font-size: small;
     color: var(--accent-color);
@@ -123,8 +122,6 @@ footer {
     font-size:large;
 }
 
-/* PROJECT card body: banner + tech (left) beside description + Steam (right).
-   Columns are top-aligned and wrap to a single column when space is tight. */
 .projectGrid
 {
     display: flex;
@@ -186,17 +183,14 @@ footer {
     gap: var(--space--universal);
 }
 
-/* Cards that use the dossier header bar give up their own padding (it moves to
-   .card-body) and clip their corners so the teal strip sits flush to the card
-   edge. Scoped with :has() so the detail-view cards, which have no header yet,
-   keep their existing padding. */
+
 .defaultCard:has(.card-body)
 {
     padding: 0;
     overflow: hidden;
 }
 
-/* Dossier header bar: teal strip with "OPERATIVE FILE // 00X" and a right label. */
+
 .card-header
 {
     display: flex;
@@ -209,8 +203,8 @@ footer {
     background-color: var(--primary-light);
     color: var(--primary-dark);
     padding: var(--space-sm) var(--space-md);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -221,11 +215,7 @@ footer {
     font-size: 0.85rem;
 }
 
-/* Inner content region below the header bar; carries the padding the card
-   itself gives up so the header can sit flush to the card edges.
-   flex-grow fills the leftover height (cards stretch to their row's tallest
-   sibling) so the header pins to the top while the body still centers its own
-   content — without disturbing .defaultCard, which the detail view reuses. */
+
 .card-body
 {
     display: flex;
@@ -247,7 +237,7 @@ footer {
         box-shadow var(--duration-fast) var(--ease-out);
 }
 
-/* Calmer than the old float loop: a subtle lift on hover. */
+
 .projectBanner:hover
 {
     transform: translateY(-6px);
@@ -256,7 +246,7 @@ footer {
 
 .profilePic > img
 {
-    max-width: 200px;
+    max-width: 250px;
     opacity: 0%;
     border-radius: var(--radius-universal);
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
@@ -271,8 +261,7 @@ footer {
 
 }
 
-/* Profile card (// 001): photo left, dossier field list right. Wraps to a
-   stacked column on narrow screens. */
+
 .profileBody
 {
     flex-direction: row;
@@ -296,8 +285,8 @@ footer {
 .fieldList dt
 {
     color: var(--primary-light);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.9rem;
@@ -307,8 +296,8 @@ footer {
 {
     margin: 0;
     color: var(--text-light);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     font-size: 1.15rem;
 }
 
@@ -332,44 +321,35 @@ footer {
 .titleContainer
 {
     opacity: 0;
-    color: var(--primary-color);
-    font-family: 'Tenor Sans', sans-serif;
+    color: var(--primary-light);
+    font-family: 'Sora', sans-serif;
     font-size:xx-large;
-    /* Neutralize h1/h2 browser defaults so headings render like the original divs */
+    text-transform: uppercase;
     margin: 0;
-    font-weight: normal;
+    font-weight: 400;
     white-space: nowrap;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.3s;
     animation-fill-mode: forwards;
 }
 
-/* Intro heading (// 002) uses teal to match the reference palette — teal for
-   headings/labels, yellow reserved for the single CTA. */
-#intro-title
-{
-    color: var(--primary-light);
-}
-
-/* Sub-heading inside a detail card body (e.g. "Tech"), for content that sits
-   below a section's header bar rather than getting its own bar. */
 .subTitle
 {
     margin: 0;
     color: var(--primary-light);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.9rem;
 }
 
-/* Genre line under the DESCRIPTION heading — a muted secondary subtitle. */
+
 .genreSub
 {
     margin: calc(-1 * var(--space-sm)) 0 0;
     color: var(--text-muted);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     font-size: 0.95rem;
 }
 
@@ -380,10 +360,11 @@ footer {
 
 .msgContainer
 {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     padding: 0px 0px 10px 0px;
     text-align: left;
+    font-size: 1.15em;
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
@@ -412,8 +393,8 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     font-style: italic;
     font-size: 1.25rem;
     opacity: 0;
@@ -477,8 +458,8 @@ footer {
     gap: var(--space-sm);
     color: var(--primary-dark);
     background-color: var(--primary-color);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     font-size: 1.05rem;
     text-decoration: none;
     padding: var(--space-sm) var(--space-lg);
@@ -523,8 +504,8 @@ footer {
 .backLink
 {
     color: var(--primary-dark);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     text-decoration: none;
     opacity: 0.8;
 }
@@ -567,8 +548,8 @@ footer {
     border: 1px solid var(--card-border);
     border-radius: var(--radius-md);
     color: var(--text-light);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     font-size: 0.85rem;
 }
 
@@ -581,8 +562,8 @@ footer {
     width: 100%;
     list-style: none;
     text-align: left;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
@@ -611,8 +592,8 @@ footer {
     gap: var(--space-sm);
     color: var(--primary-dark);
     background-color: var(--primary-color);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     text-decoration: none;
     opacity: 0;
     padding: var(--space-sm) var(--space-md);
@@ -647,7 +628,7 @@ footer {
 /* Blinking cursor element */
 .typing-cursor {
     color: var(--primary-color);
-    font-weight: normal;
+    font-weight: 400;
     animation: cursorBlink 1s step-end infinite;
     margin-left: 2px;
 }
