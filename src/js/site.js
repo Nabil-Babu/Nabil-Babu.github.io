@@ -39,7 +39,7 @@ let titleTypeWriter = new TypeWriter(
         minDelay: 40,
         maxDelay: 90,
         startDelay: 800,  // Wait for slide-in (0.3s delay + 0.5s duration)
-        hideCursorOnComplete: true
+        hideCursorOnComplete: false
     }
 );
 
