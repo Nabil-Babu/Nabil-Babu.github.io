@@ -81,6 +81,10 @@ footer a:visited{
     color: var(--text-light);
 }
 
+footer a {
+    color: var(--primary-color)
+}
+
 /* CSS ID's */
 
 /* Fixed full-viewport layer holding the p5 canvas, behind all content */
@@ -371,7 +375,7 @@ footer a:visited{
     font-weight: 400;
     padding: 0px 0px 10px 0px;
     text-align: left;
-    font-size: 1.35em;
+    font-size: 1.25em;
     line-height: 1.4em;
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
@@ -523,6 +527,7 @@ CSS entrance animation from scratch and play it forward automatically. */
 .backLink
 {
     color: var(--primary-dark);
+    padding-top: 1.5em;
     font-family: 'Sora', sans-serif;
     font-weight: 400;
     text-decoration: none;
@@ -535,8 +540,7 @@ CSS entrance animation from scratch and play it forward automatically. */
     text-decoration: underline;
 }
 
-/* Back link above the detail cards sits on the navy page, not a teal header,
-so it takes its own full-width row and a light/teal colour. */
+
 .detailBack
 {
     flex-basis: 100%;
@@ -548,7 +552,7 @@ so it takes its own full-width row and a light/teal colour. */
     width: 100%;
 }
 
-/* Tech stack rendered as bordered pill chips (mirrors the .iconBtn border). */
+
 .techChips
 {
     display: flex;
