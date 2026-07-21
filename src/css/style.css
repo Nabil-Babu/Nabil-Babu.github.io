@@ -126,20 +126,25 @@ footer {
 {
     display: flex;
     flex-flow: row wrap;
-    align-items: flex-start;
+    align-items: stretch;   /* equal-height columns so the divider spans the row */
     gap: var(--space-lg);
     width: 100%;
+    /* Query the grid's own width (not the viewport) so the divider only shows
+       when the two columns actually sit side by side, whatever the card width. */
+    container-type: inline-size;
 }
 
 .projectCol
 {
     flex: 1 1 300px;
     min-width: 0;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
     text-align: left;
 }
+
 
 #gallery {
     display: grid;
@@ -177,8 +182,8 @@ footer {
     scale: 1;
     border-radius: var(--radius-universal);
     animation: 
-        slideInFromTop var(--duration-slow) var(--ease-out);
-        /* scaleUp var(--duration-fast) linear 1; */
+    slideInFromTop var(--duration-slow) var(--ease-out);
+    /* scaleUp var(--duration-fast) linear 1; */
     animation-fill-mode: forwards;
     gap: var(--space--universal);
 }
@@ -235,48 +240,48 @@ footer {
     transition:
         transform var(--duration-fast) var(--ease-out),
         box-shadow var(--duration-fast) var(--ease-out);
-}
+    }
 
+    
+    .projectBanner:hover
+    {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .profilePic > img
+    {
+        max-width: 250px;
+        opacity: 0%;
+        border-radius: var(--radius-universal);
+        animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
+        animation-fill-mode: forwards;
+    }
 
-.projectBanner:hover
-{
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-}
-
-.profilePic > img
-{
-    max-width: 250px;
-    opacity: 0%;
-    border-radius: var(--radius-universal);
-    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
-    animation-fill-mode: forwards;
-}
-
-.projectBanner > img
-{
-    opacity: 100%;
-    max-width: 250px;
-    border-radius: var(--radius-universal);
-
-}
-
-
-.profileBody
-{
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-lg);
-    text-align: left;
-}
-
-.fieldList
-{
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
+    .projectBanner > img
+    {
+        opacity: 100%;
+        max-width: 250px;
+        border-radius: var(--radius-universal);
+        
+    }
+    
+    
+    .profileBody
+    {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-lg);
+        text-align: left;
+    }
+    
+    .fieldList
+    {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
@@ -403,7 +408,7 @@ footer {
 }
 
 /* Contact card (// 004): quote, social icon buttons, CTA — a touch more air
-   between the three groups than the default card-body gap. */
+between the three groups than the default card-body gap. */
 .contactBody
 {
     gap: var(--space-lg);
@@ -431,9 +436,9 @@ footer {
     border: 1px solid var(--card-border);
     border-radius: var(--radius-md);
     transition:
-        color var(--duration-fast) var(--ease-out),
-        border-color var(--duration-fast) var(--ease-out),
-        transform var(--duration-fast) var(--ease-out);
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .iconBtn:hover
@@ -466,8 +471,8 @@ footer {
     border-radius: var(--radius-md);
     opacity: 0;
     transition:
-        background-color var(--duration-fast) var(--ease-out),
-        transform var(--duration-fast) var(--ease-out);
+    background-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
     animation-fill-mode: forwards;
 }
@@ -490,13 +495,13 @@ footer {
 
 
 /* Fully removes an element from layout once its hide animation has finished.
-   Removing this class restores display, which makes the browser recreate the
-   CSS entrance animation from scratch and play it forward automatically. */
+Removing this class restores display, which makes the browser recreate the
+CSS entrance animation from scratch and play it forward automatically. */
 .layout-collapsed
 {
     /* !important so it still wins over the #project-detail-view id rule's
-       `display: flex`, which otherwise out-specifies this class and leaves the
-       detail view visible while collapsed. */
+    `display: flex`, which otherwise out-specifies this class and leaves the
+    detail view visible while collapsed. */
     display: none !important;
 }
 
@@ -517,7 +522,7 @@ footer {
 }
 
 /* Back link above the detail cards sits on the navy page, not a teal header,
-   so it takes its own full-width row and a light/teal colour. */
+so it takes its own full-width row and a light/teal colour. */
 .detailBack
 {
     flex-basis: 100%;
@@ -554,7 +559,7 @@ footer {
 }
 
 /* Contributions list: teal en-dash bullets with a hanging indent so wrapped
-   lines align under the text, not the dash. */
+lines align under the text, not the dash. */
 .dashList
 {
     margin: 0;
@@ -651,11 +656,18 @@ footer {
     .container {
         max-width: 95%;
     }
-
-    /* Screenshots stack to a single column on phones (the PROJECT card's two
-       columns already stack via their 300px flex basis). */
+    
     #gallery {
         grid-template-columns: 1fr;
+    }
+}
+
+@container (min-width: 640px)
+{
+    .projectCol + .projectCol
+    {
+        border-left: 1px solid var(--card-border);
+        padding-left: var(--space-lg);
     }
 }
 
