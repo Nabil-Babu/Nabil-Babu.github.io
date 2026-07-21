@@ -92,7 +92,9 @@ footer {
 
 #gallery > img
 {
-    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
     border-radius: var(--radius-universal);
     opacity: 0%;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
@@ -143,11 +145,10 @@ footer {
 }
 
 #gallery {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;                                                                                                                                                                
-    align-items: center;
-    gap: var(--space--universal);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    width: 100%;
 }
 
 /* CSS Classes */
@@ -668,6 +669,12 @@ footer {
 @media all and (max-width: 500px) {
     .container {
         max-width: 95%;
+    }
+
+    /* Screenshots stack to a single column on phones (the PROJECT card's two
+       columns already stack via their 300px flex basis). */
+    #gallery {
+        grid-template-columns: 1fr;
     }
 }
 
