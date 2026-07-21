@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400&family=Raleway&family=Tenor+Sans&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
 /* Root Variables */
 
 :root {
@@ -9,6 +8,12 @@
     --primary-dark: #00060e;
     --secondary-color: #9a9f17;
     --accent-color: #54c1e6;
+
+    /* Dossier redesign surfaces */
+    --card-bg: #131f33;                       /* Navy card body */
+    --card-border: rgba(57, 196, 182, 0.45);  /* Faint teal outline */
+    --text-light: #e7edf5;                    /* Body text on navy */
+    --text-muted: #8a97a8;                    /* Secondary text (e.g. genre) */
             
     /* Spacing system */
     --space-xs: 0.25rem;
@@ -59,14 +64,15 @@ body {
 
 footer {
     display: flex;
-    align-items: end;
-    justify-content: end;
-    flex-direction: column;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
-    text-align: right;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    text-align: center;
     font-size: small;
-    color: var(--accent-color);
+    gap: var(--space-sm);
+    color: var(--text-light);
     margin-bottom: 8px;
     margin-right: 5px;
 }
@@ -86,7 +92,9 @@ footer {
 
 #gallery > img
 {
-    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
     border-radius: var(--radius-universal);
     opacity: 0%;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
@@ -103,9 +111,10 @@ footer {
     margin: auto;
 }
 
-#project-detail-view > #description
+/* Each detail card gets its own full-width row (the reference stacks them). */
+#project-detail-view > .defaultCard
 {
-    max-width: 400px;
+    flex-basis: 100%;
 }
 
 #project-detail-view > #contributions
@@ -114,12 +123,35 @@ footer {
     font-size:large;
 }
 
-#gallery {
+.projectGrid
+{
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;                                                                                                                                                                
-    align-items: center;
-    gap: var(--space--universal);
+    align-items: stretch;   /* equal-height columns so the divider spans the row */
+    gap: var(--space-lg);
+    width: 100%;
+    /* Query the grid's own width (not the viewport) so the divider only shows
+       when the two columns actually sit side by side, whatever the card width. */
+    container-type: inline-size;
+}
+
+.projectCol
+{
+    flex: 1 1 300px;
+    min-width: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: left;
+}
+
+
+#gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    width: 100%;
 }
 
 /* CSS Classes */
@@ -138,8 +170,9 @@ footer {
 
 .defaultCard
 {
-    color: var(--primary-dark);
-    background-color: var(--primary-light);
+    color: var(--text-light);
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
     padding: var(--space--universal);
     flex-grow: 1;
     display: flex;                                                                                                                                                                                                                
@@ -150,43 +183,127 @@ footer {
     scale: 1;
     border-radius: var(--radius-universal);
     animation: 
-        slideInFromTop var(--duration-slow) var(--ease-out);
-        /* scaleUp var(--duration-fast) linear 1; */
+    slideInFromTop var(--duration-slow) var(--ease-out);
+    /* scaleUp var(--duration-fast) linear 1; */
     animation-fill-mode: forwards;
     gap: var(--space--universal);
 }
 
-.socialLogo:hover
-{
-    animation: spin 2.0s ease-in-out infinite;
-}
 
-.projectBanner:hover
+.defaultCard:has(.card-body)
 {
-    animation: float 2.0s ease-in-out infinite;
-}
-
-.socialLogo > img
-{
-    max-width: 65px;
-    opacity: 100%;
+    padding: 0;
+    overflow: hidden;
 }
 
 .profilePic > img
 {
-    max-width: 150px;
+    max-width: 250px;
     opacity: 0%;
     border-radius: var(--radius-universal);
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
     animation-fill-mode: forwards;
 }
 
+.card-header
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    padding: var(--space-sm) var(--space-md);
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.file-no,
+.file-status
+{
+    font-size: 0.85rem;
+}
+
+
+.card-body
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--space-md);
+    gap: var(--space--universal);
+}
+
+.projectBanner
+{
+    border-radius: var(--radius-universal);
+    transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+    
+.projectBanner:hover
+{
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+    
+
 .projectBanner > img
 {
     opacity: 100%;
     max-width: 250px;
-    border-radius: var(--radius-universal);
+    border-radius: var(--radius-universal); 
+}
+    
+    
+.profileBody
+{
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-lg);
+    text-align: left;
+}
+    
+.fieldList
+{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    opacity: 0;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
+    animation-fill-mode: forwards;
+}
 
+.fieldList dt
+{
+    color: var(--primary-light);
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+}
+
+.fieldList dd
+{
+    margin: 0;
+    color: var(--text-light);
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 1.15rem;
 }
 
 .projectDetailBanner > img
@@ -209,22 +326,36 @@ footer {
 .titleContainer
 {
     opacity: 0;
-    color: var(--primary-color);
-    font-family: 'Tenor Sans', sans-serif;
-    font-size:xx-large;
-    /* Neutralize h1/h2 browser defaults so headings render like the original divs */
+    color: var(--primary-light);
+    font-family: 'Sora', sans-serif;
+    font-size: x-large;
+    text-transform: uppercase;
     margin: 0;
-    font-weight: normal;
+    font-weight: 400;
     white-space: nowrap;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.3s;
     animation-fill-mode: forwards;
 }
 
-.titleContainer.genre
+.subTitle
 {
-    font-size: medium;
-    font-weight: normal;
-    white-space: normal;
+    margin: 0;
+    color: var(--primary-light);
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+}
+
+
+.genreSub
+{
+    margin: calc(-1 * var(--space-sm)) 0 0;
+    color: var(--text-muted);
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 0.95rem;
 }
 
 .highlight
@@ -234,23 +365,13 @@ footer {
 
 .msgContainer
 {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     padding: 0px 0px 10px 0px;
     text-align: left;
+    font-size: 1.15em;
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
-    animation-fill-mode: forwards;
-}
-
-.logoContainer
-{
-    display: flex;
-    flex-flow: row wrap;
-    gap: var(--space--universal);
-    min-width: 25%;
-    opacity: 0;
-    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
     animation-fill-mode: forwards;
 }
 
@@ -269,36 +390,138 @@ footer {
 
 .quotesContainer
 {
-    color: var(--primary-color);
+    margin: 0;
+    max-width: 600px;
+    color: var(--text-light);
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;                                                                                                                                                                
+    justify-content: center;
     align-items: center;
-    font-size: xx-large;
+    text-align: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.25rem;
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
 }
 
+/* Author attribution on its own line, set apart from the italic quote by a
+   bold, upright weight. */
+.quoteAuthor
+{
+    flex-basis: 100%;
+    margin-top: var(--space-sm);
+    font-style: normal;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+/* Contact card (// 004): quote, social icon buttons, CTA — a touch more air
+between the three groups than the default card-body gap. */
+.contactBody
+{
+    gap: var(--space-lg);
+}
+
+.socialRow
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    opacity: 0;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.6s;
+    animation-fill-mode: forwards;
+}
+
+.iconBtn
+{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--text-light);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    transition:
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.iconBtn:hover
+{
+    color: var(--primary-light);
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.iconBtn svg
+{
+    display: block;
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+.ctaButton
+{
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--primary-dark);
+    background-color: var(--primary-color);
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-md);
+    opacity: 0;
+    transition:
+    background-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.8s;
+    animation-fill-mode: forwards;
+}
+
+.ctaButton:hover
+{
+    background-color: #fff;
+    transform: translateY(-2px);
+}
+
+.ctaButton:hover .ctaArrow
+{
+    transform: translateX(3px);
+}
+
+.ctaArrow
+{
+    transition: transform var(--duration-fast) var(--ease-out);
+}
+
 
 /* Fully removes an element from layout once its hide animation has finished.
-   Removing this class restores display, which makes the browser recreate the
-   CSS entrance animation from scratch and play it forward automatically. */
+Removing this class restores display, which makes the browser recreate the
+CSS entrance animation from scratch and play it forward automatically. */
 .layout-collapsed
 {
     /* !important so it still wins over the #project-detail-view id rule's
-       `display: flex`, which otherwise out-specifies this class and leaves the
-       detail view visible while collapsed. */
+    `display: flex`, which otherwise out-specifies this class and leaves the
+    detail view visible while collapsed. */
     display: none !important;
 }
 
 
 .backLink
 {
-    align-self: flex-start;
     color: var(--primary-dark);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     text-decoration: none;
     opacity: 0.8;
 }
@@ -309,33 +532,84 @@ footer {
     text-decoration: underline;
 }
 
+/* Back link above the detail cards sits on the navy page, not a teal header,
+so it takes its own full-width row and a light/teal colour. */
+.detailBack
+{
+    flex-basis: 100%;
+    color: var(--primary-light);
+}
+
 .techStackContainer
 {
     width: 100%;
 }
 
-.stackList
+/* Tech stack rendered as bordered pill chips (mirrors the .iconBtn border). */
+.techChips
 {
-    margin: 0;
-    padding-left: var(--space-lg);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--space-sm);
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
 }
 
-.stackList > li 
+.chip
 {
-    margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    color: var(--text-light);
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 0.85rem;
+}
+
+/* Contributions list: teal en-dash bullets with a hanging indent so wrapped
+lines align under the text, not the dash. */
+.dashList
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    text-align: left;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    opacity: 0;
+    animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
+    animation-fill-mode: forwards;
+}
+
+.dashList > li
+{
+    position: relative;
+    padding-left: var(--space-lg);
+    margin-bottom: var(--space-sm);
+}
+
+.dashList > li::before
+{
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--primary-light);
 }
 
 .storeLink
 {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;   /* hug the label instead of stretching the column */
+    gap: var(--space-sm);
     color: var(--primary-dark);
     background-color: var(--primary-color);
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
     text-decoration: none;
     opacity: 0;
     padding: var(--space-sm) var(--space-md);
@@ -343,6 +617,12 @@ footer {
     transition: background-color var(--duration-fast) var(--ease-out);
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
+}
+
+.storeLink svg
+{
+    width: 16px;
+    height: 16px;
 }
 
 .storeLink:hover
@@ -364,7 +644,7 @@ footer {
 /* Blinking cursor element */
 .typing-cursor {
     color: var(--primary-color);
-    font-weight: normal;
+    font-weight: 400;
     animation: cursorBlink 1s step-end infinite;
     margin-left: 2px;
 }
@@ -386,6 +666,19 @@ footer {
 @media all and (max-width: 500px) {
     .container {
         max-width: 95%;
+    }
+    
+    #gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
+@container (min-width: 640px)
+{
+    .projectCol + .projectCol
+    {
+        border-left: 1px solid var(--card-border);
+        padding-left: var(--space-lg);
     }
 }
 
@@ -409,24 +702,6 @@ footer {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
     }
 }
 
