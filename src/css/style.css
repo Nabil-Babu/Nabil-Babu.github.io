@@ -178,6 +178,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
     width: 100%;
     box-sizing: border-box;
     background-color: var(--primary-light);
@@ -213,9 +215,19 @@ footer {
     gap: var(--space--universal);
 }
 
+.projectBanner
+{
+    border-radius: var(--radius-universal);
+    transition:
+        transform var(--duration-fast) var(--ease-out),
+        box-shadow var(--duration-fast) var(--ease-out);
+}
+
+/* Calmer than the old float loop: a subtle lift on hover. */
 .projectBanner:hover
 {
-    animation: float 2.0s ease-in-out infinite;
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
 }
 
 .profilePic > img
@@ -307,11 +319,24 @@ footer {
     animation-fill-mode: forwards;
 }
 
-.titleContainer.genre
+/* Intro heading (// 002) uses teal to match the reference palette — teal for
+   headings/labels, yellow reserved for the single CTA. */
+#intro-title
 {
-    font-size: medium;
-    font-weight: normal;
-    white-space: normal;
+    color: var(--primary-light);
+}
+
+/* Sub-heading inside a detail card body (e.g. "Tech"), for content that sits
+   below a section's header bar rather than getting its own bar. */
+.subTitle
+{
+    margin: 0 0 var(--space-sm);
+    color: var(--primary-light);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
 }
 
 .highlight
@@ -463,8 +488,7 @@ footer {
 
 .backLink
 {
-    align-self: flex-start;
-    color: var(--text-light);
+    color: var(--primary-dark);
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
     text-decoration: none;
@@ -577,24 +601,6 @@ footer {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
     }
 }
 

@@ -12,34 +12,54 @@ function renderProjectDetail(project) {
     const view = document.getElementById("project-detail-view");
     view.innerHTML = `
         <section id="main" class="defaultCard">
-            <a href="index.html" class="backLink">&larr; Back</a>
-            <h2 class="titleContainer">${project.title}</h2>
-            <div class="projectDetailBanner"><img src="${project.bannerImage}" alt="${project.title}"></div>
-            <div class="techStackContainer defaultCard">
-                <h3 class="titleContainer">Tech...</h3>
-                <ul class="stackList">
-                    ${project.techStack.map(item => `<li>${item}</li>`).join("")}
-                </ul>
+            <header class="card-header">
+                <span class="file-no">${project.title}</span>
+                <a href="index.html" class="backLink">&larr; Back</a>
+            </header>
+            <div class="card-body">
+                <div class="projectDetailBanner"><img src="${project.bannerImage}" alt="${project.title}"></div>
+                <div class="techStackContainer">
+                    <h3 class="subTitle">Tech</h3>
+                    <ul class="stackList">
+                        ${project.techStack.map(item => `<li>${item}</li>`).join("")}
+                    </ul>
+                </div>
             </div>
         </section>
         <section id="description" class="defaultCard">
-            <h2 class="titleContainer">Description...</h2>
-            <h2 class="titleContainer genre">${project.genre}</h2>
-            <div class="msgContainer">${project.description}</div>
+            <header class="card-header">
+                <span class="file-no">Description</span>
+                <span class="file-status">${project.genre}</span>
+            </header>
+            <div class="card-body">
+                <div class="msgContainer">${project.description}</div>
+            </div>
         </section>
         <section id="socials" class="defaultCard">
-            <h2 class="titleContainer">Links...</h2>
-            <a href="${project.storeLink}" target="_blank" rel="noopener noreferrer" class="storeLink">View on Steam</a>
+            <header class="card-header">
+                <span class="file-no">Links</span>
+            </header>
+            <div class="card-body">
+                <a href="${project.storeLink}" target="_blank" rel="noopener noreferrer" class="storeLink">View on Steam</a>
+            </div>
         </section>
         <section id="contributions" class="defaultCard">
-            <h2 class="titleContainer">Contributions...</h2>
-            <ul class="stackList">
-                ${project.contributions.map(item => `<li>${item}</li>`).join("")}
-            </ul>
+            <header class="card-header">
+                <span class="file-no">Contributions</span>
+            </header>
+            <div class="card-body">
+                <ul class="stackList">
+                    ${project.contributions.map(item => `<li>${item}</li>`).join("")}
+                </ul>
+            </div>
         </section>
         <section class="defaultCard">
-        <h2 class="titleContainer">Gallery...</h2>
-            <div id="gallery">${project.screenshots.map(imglnk => `<img src="${imglnk}" alt="${project.title}">`).join(" ")}</div>
+            <header class="card-header">
+                <span class="file-no">Gallery</span>
+            </header>
+            <div class="card-body">
+                <div id="gallery">${project.screenshots.map(imglnk => `<img src="${imglnk}" alt="${project.title}">`).join(" ")}</div>
+            </div>
         </section>
     `;
 }
