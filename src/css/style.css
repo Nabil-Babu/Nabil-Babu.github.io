@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap');
 /* Root Variables */
 
 :root {
@@ -405,6 +405,17 @@ footer {
     opacity: 0;
     animation: slideInFromBottom var(--duration-slow) var(--ease-out) 0.4s;
     animation-fill-mode: forwards;
+}
+
+/* Author attribution on its own line, set apart from the italic quote by a
+   bold, upright weight. */
+.quoteAuthor
+{
+    flex-basis: 100%;
+    margin-top: var(--space-sm);
+    font-style: normal;
+    font-weight: 700;
+    color: var(--text-light);
 }
 
 /* Contact card (// 004): quote, social icon buttons, CTA — a touch more air
