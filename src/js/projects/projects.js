@@ -11,41 +11,36 @@ function findProjectById(id) {
 function renderProjectDetail(project) {
     const view = document.getElementById("project-detail-view");
     view.innerHTML = `
-        <section id="main" class="defaultCard">
+        <a href="index.html" class="backLink detailBack">&larr; Back</a>
+        <section id="project-main" class="defaultCard">
             <header class="card-header">
-                <span class="file-no">${project.title}</span>
-                <a href="index.html" class="backLink">&larr; Back</a>
+                <span class="file-no">Operative File // Project</span>
+                <span class="file-status">${project.title}</span>
             </header>
             <div class="card-body">
-                <div class="projectDetailBanner"><img src="${project.bannerImage}" alt="${project.title}"></div>
-                <div class="techStackContainer">
-                    <h3 class="subTitle">Tech</h3>
-                    <ul class="stackList">
-                        ${project.techStack.map(item => `<li>${item}</li>`).join("")}
-                    </ul>
+                <div class="projectGrid">
+                    <div class="projectCol">
+                        <div class="projectDetailBanner"><img src="${project.bannerImage}" alt="${project.title}"></div>
+                        <div class="techStackContainer">
+                            <h3 class="subTitle">Tech Stack</h3>
+                            <div class="techChips">
+                                ${project.techStack.map(item => `<span class="chip">${item}</span>`).join("")}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="projectCol">
+                        <h3 class="subTitle">Description</h3>
+                        <p class="genreSub">${project.genre}</p>
+                        <div class="msgContainer">${project.description}</div>
+                        <a href="${project.storeLink}" target="_blank" rel="noopener noreferrer" class="storeLink">View on Steam <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section id="description" class="defaultCard">
-            <header class="card-header">
-                <span class="file-no">Description</span>
-                <span class="file-status">${project.genre}</span>
-            </header>
-            <div class="card-body">
-                <div class="msgContainer">${project.description}</div>
-            </div>
-        </section>
-        <section id="socials" class="defaultCard">
-            <header class="card-header">
-                <span class="file-no">Links</span>
-            </header>
-            <div class="card-body">
-                <a href="${project.storeLink}" target="_blank" rel="noopener noreferrer" class="storeLink">View on Steam</a>
             </div>
         </section>
         <section id="contributions" class="defaultCard">
             <header class="card-header">
                 <span class="file-no">Contributions</span>
+                <span class="file-status">${project.title}</span>
             </header>
             <div class="card-body">
                 <ul class="stackList">
@@ -56,6 +51,7 @@ function renderProjectDetail(project) {
         <section class="defaultCard">
             <header class="card-header">
                 <span class="file-no">Gallery</span>
+                <span class="file-status">${project.title}</span>
             </header>
             <div class="card-body">
                 <div id="gallery">${project.screenshots.map(imglnk => `<img src="${imglnk}" alt="${project.title}">`).join(" ")}</div>
